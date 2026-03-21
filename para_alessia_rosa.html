@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Alessia 🌹</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Dancing+Script:wght@500;700&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #0a0a0f;
+    --bg-mid: #110d16;
+    --rose-red: #c4364a;
+    --rose-pink: #e06078;
+    --rose-light: #f0a0a8;
+    --rose-dark: #8a1a2a;
+    --gold: #d4a054;
+    --gold-light: #f0cc8a;
+    --cream: #f5e6d8;
+    --green-stem: #3a6b3a;
+    --green-leaf: #4a8a4a;
+    --text-soft: #c8b8c0;
+    --text-light: #e8d8e0;
+  }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--bg-deep);
+    color: var(--text-soft);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* === STARFIELD === */
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.9; }
+  }
+
+  /* === AMBIENT GLOW === */
+  .glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-1 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(196,54,74,0.15), transparent 70%);
+    top: 10%; left: 50%;
+    transform: translateX(-50%);
+    animation: glowPulse 8s ease-in-out infinite;
+  }
+
+  .glow-2 {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(212,160,84,0.08), transparent 70%);
+    top: 55%; left: 20%;
+    animation: glowPulse 12s 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+  }
+
+  /* === MAIN CONTAINER === */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  /* === PLAY BUTTON === */
+  .play-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6,6,10,0.95);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+  }
+
+  .play-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .play-label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 30px;
+    animation: fadeInSoft 2s ease both;
+  }
+
+  .play-btn {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInSoft 2s 0.5s ease both, pulseRing 3s 2s ease-in-out infinite;
+    position: relative;
+  }
+
+  .play-btn::after {
+    content: '';
+    width: 0; height: 0;
+    border-left: 22px solid var(--gold);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 5px;
+  }
+
+  .play-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-top: 25px;
+    opacity: 0.5;
+    animation: fadeInSoft 2s 1s ease both;
+  }
+
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,84,0.3); }
+    50% { box-shadow: 0 0 0 20px rgba(212,160,84,0); }
+  }
+
+  @keyframes fadeInSoft {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === ROSE SECTION === */
+  .rose-stage {
+    height: 70vh;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .rose-container {
+    width: 280px;
+    height: 360px;
+    position: relative;
+  }
+
+  /* SVG Rose Petals */
+  .rose-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .petal {
+    transform-origin: center bottom;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: none;
+  }
+
+  .petal.bloom {
+    animation: petalBloom 2s ease-out forwards;
+  }
+
+  .petal-inner.bloom {
+    animation: petalBloomInner 1.8s ease-out forwards;
+  }
+
+  @keyframes petalBloom {
+    0% { opacity: 0; transform: scale(0) rotate(-30deg); }
+    40% { opacity: 0.8; }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  @keyframes petalBloomInner {
+    0% { opacity: 0; transform: scale(0) rotate(20deg); }
+    40% { opacity: 0.9; }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  .stem-line {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+  }
+
+  .stem-line.grow {
+    animation: stemGrow 2s ease-out forwards;
+  }
+
+  @keyframes stemGrow {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .leaf-path {
+    opacity: 0;
+    transform-origin: left center;
+    transform: scale(0);
+  }
+
+  .leaf-path.grow {
+    animation: leafGrow 1.5s ease-out forwards;
+  }
+
+  @keyframes leafGrow {
+    0% { opacity: 0; transform: scale(0) rotate(-20deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  /* Rose glow */
+  .rose-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(224,96,120,0.25), transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+
+  .rose-glow.show { opacity: 1; }
+
+  /* === NAME REVEAL === */
+  .name-reveal {
+    text-align: center;
+    margin-top: -10px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 2s ease, transform 2s ease;
+  }
+
+  .name-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .name-sub {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .name-main {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(52px, 14vw, 78px);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--rose-light), var(--rose-pink), var(--cream));
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1.1;
+    filter: drop-shadow(0 0 30px rgba(224,96,120,0.3));
+  }
+
+  .name-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 18px auto 0;
+  }
+
+  /* === MESSAGES SECTION === */
+  .messages-section {
+    padding: 40px 0 30px;
+  }
+
+  .msg-block {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    margin-bottom: 45px;
+  }
+
+  .msg-block.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .msg-emoji {
+    font-size: 30px;
+    margin-bottom: 14px;
+    display: inline-block;
+  }
+
+  .msg-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--cream);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .msg-block p {
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-soft);
+  }
+
+  .msg-block p em {
+    color: var(--rose-light);
+    font-style: italic;
+  }
+
+  /* === DIVIDERS === */
+  .dot-divider {
+    text-align: center;
+    margin: 35px 0;
+    letter-spacing: 16px;
+    color: var(--gold);
+    font-size: 8px;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .dot-divider.show { opacity: 0.6; }
+
+  /* === QUOTE BOX === */
+  .quote-box {
+    border-left: 2px solid var(--rose-dark);
+    padding: 16px 22px;
+    margin: 20px 0 5px;
+    background: rgba(196,54,74,0.05);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .quote-box p {
+    font-style: italic;
+    font-size: 18px !important;
+    color: var(--rose-light) !important;
+    line-height: 1.7 !important;
+  }
+
+  /* === BIG HEART === */
+  .heart-section {
+    text-align: center;
+    padding: 50px 0;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+  }
+
+  .heart-section.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .big-heart {
+    font-size: 80px;
+    display: inline-block;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(224,96,120,0.5));
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.2); }
+    56% { transform: scale(1); }
+  }
+
+  .heart-text {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--cream);
+    margin-top: 20px;
+  }
+
+  /* === FIRMA === */
+  .firma {
+    text-align: center;
+    padding: 30px 0 60px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+
+  .firma.show { opacity: 1; }
+
+  .firma-pre {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .firma-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--cream);
+    filter: drop-shadow(0 0 10px rgba(212,160,84,0.2));
+  }
+
+  .firma-final {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-top: 14px;
+    opacity: 0.6;
+  }
+
+  /* === FALLING PETALS === */
+  .falling-petals {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .f-petal {
+    position: absolute;
+    top: -30px;
+    width: 12px;
+    height: 14px;
+    background: var(--rose-red);
+    border-radius: 50% 50% 50% 0;
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+
+  .f-petal.fall {
+    animation: petalFall linear forwards;
+  }
+
+  @keyframes petalFall {
+    0% { opacity: 0; transform: rotate(45deg) translateY(0); }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.4; }
+    100% { opacity: 0; transform: rotate(405deg) translateY(110vh); }
+  }
+
+  /* === MUSIC VISUALIZER === */
+  .music-vis {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+    height: 20px;
+    margin: 20px auto;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .music-vis.show { opacity: 0.5; }
+
+  .bar {
+    width: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    animation: musicBar 0.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes musicBar {
+    0% { height: 4px; }
+    100% { height: 18px; }
+  }
+
+  /* === SCROLL INDICATOR === */
+  .scroll-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+  }
+
+  .scroll-hint.show { opacity: 0.5; }
+
+  .scroll-hint span {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    transform: rotate(45deg);
+    margin: 0 auto;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(8px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Play Overlay -->
+<div class="play-overlay" id="playOverlay">
+  <div class="play-label">Una sorpresa para ti</div>
+  <div class="play-btn"></div>
+  <div class="play-hint">toca para comenzar</div>
+</div>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Ambient glow -->
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+
+<!-- Falling petals container -->
+<div class="falling-petals" id="fallingPetals"></div>
+
+<!-- Scroll hint -->
+<div class="scroll-hint" id="scrollHint">
+  <span>desliza</span>
+  <div class="scroll-arrow"></div>
+</div>
+
+<div class="main">
+  <!-- ROSE + NAME -->
+  <div class="rose-stage">
+    <div class="rose-container">
+      <div class="rose-glow" id="roseGlow"></div>
+      <svg class="rose-svg" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stem -->
+        <line class="stem-line" id="stem" x1="140" y1="210" x2="140" y2="360" stroke="#3a6b3a" stroke-width="3.5" stroke-linecap="round"/>
+
+        <!-- Left leaf -->
+        <path class="leaf-path" id="leaf1" d="M140 290 Q110 270 95 280 Q90 295 140 300" fill="#4a8a4a" opacity="0.85"/>
+        <!-- Right leaf -->
+        <path class="leaf-path" id="leaf2" d="M140 260 Q170 240 185 250 Q190 265 140 270" fill="#3a7a3a" opacity="0.85"/>
+        <!-- Small left leaf -->
+        <path class="leaf-path" id="leaf3" d="M140 320 Q120 310 112 318 Q115 328 140 328" fill="#4a8a4a" opacity="0.7"/>
+
+        <!-- Outer petals (layer 1) -->
+        <ellipse class="petal" id="p1" cx="140" cy="155" rx="52" ry="58" fill="url(#grad1)" transform="rotate(-15, 140, 190)"/>
+        <ellipse class="petal" id="p2" cx="140" cy="155" rx="50" ry="55" fill="url(#grad2)" transform="rotate(20, 140, 190)"/>
+        <ellipse class="petal" id="p3" cx="140" cy="158" rx="48" ry="52" fill="url(#grad1)" transform="rotate(-40, 140, 190)"/>
+        <ellipse class="petal" id="p4" cx="140" cy="158" rx="46" ry="50" fill="url(#grad2)" transform="rotate(45, 140, 190)"/>
+        <ellipse class="petal" id="p5" cx="140" cy="152" rx="44" ry="54" fill="url(#grad3)" transform="rotate(-60, 140, 185)"/>
+
+        <!-- Middle petals (layer 2) -->
+        <ellipse class="petal petal-inner" id="p6" cx="140" cy="168" rx="36" ry="42" fill="url(#grad3)" transform="rotate(10, 140, 190)"/>
+        <ellipse class="petal petal-inner" id="p7" cx="140" cy="170" rx="34" ry="40" fill="url(#grad4)" transform="rotate(-25, 140, 190)"/>
+        <ellipse class="petal petal-inner" id="p8" cx="140" cy="165" rx="32" ry="44" fill="url(#grad3)" transform="rotate(35, 140, 185)"/>
+
+        <!-- Inner petals (layer 3 - core) -->
+        <ellipse class="petal petal-inner" id="p9" cx="140" cy="178" rx="22" ry="30" fill="url(#grad5)" transform="rotate(5, 140, 190)"/>
+        <ellipse class="petal petal-inner" id="p10" cx="140" cy="176" rx="18" ry="26" fill="url(#grad5)" transform="rotate(-15, 140, 190)"/>
+        <ellipse class="petal petal-inner" id="p11" cx="138" cy="180" rx="14" ry="20" fill="url(#grad6)" transform="rotate(10, 140, 190)"/>
+
+        <!-- Center bud -->
+        <circle class="petal petal-inner" id="p12" cx="140" cy="185" r="8" fill="#c4364a"/>
+
+        <!-- Gradients -->
+        <defs>
+          <radialGradient id="grad1">
+            <stop offset="0%" stop-color="#e06078"/>
+            <stop offset="100%" stop-color="#a82a3e"/>
+          </radialGradient>
+          <radialGradient id="grad2">
+            <stop offset="0%" stop-color="#d44a60"/>
+            <stop offset="100%" stop-color="#8a1a2a"/>
+          </radialGradient>
+          <radialGradient id="grad3">
+            <stop offset="0%" stop-color="#e87088"/>
+            <stop offset="100%" stop-color="#c4364a"/>
+          </radialGradient>
+          <radialGradient id="grad4">
+            <stop offset="0%" stop-color="#f0a0a8"/>
+            <stop offset="100%" stop-color="#d44a60"/>
+          </radialGradient>
+          <radialGradient id="grad5">
+            <stop offset="0%" stop-color="#f0b0b8"/>
+            <stop offset="100%" stop-color="#e06078"/>
+          </radialGradient>
+          <radialGradient id="grad6">
+            <stop offset="0%" stop-color="#f5c8cc"/>
+            <stop offset="100%" stop-color="#e87088"/>
+          </radialGradient>
+
+          <!-- Petal shadow filter -->
+          <filter id="petalShadow">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#6a0a1a" flood-opacity="0.25"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Name after bloom -->
+    <div class="name-reveal" id="nameReveal">
+      <div class="name-sub">para ti</div>
+      <div class="name-main">Alessia</div>
+      <div class="name-line"></div>
+    </div>
+  </div>
+
+  <!-- Music visualizer -->
+  <div class="music-vis" id="musicVis">
+    <div class="bar" style="animation-delay: 0s;"></div>
+    <div class="bar" style="animation-delay: 0.15s;"></div>
+    <div class="bar" style="animation-delay: 0.3s;"></div>
+    <div class="bar" style="animation-delay: 0.45s;"></div>
+    <div class="bar" style="animation-delay: 0.6s;"></div>
+    <div class="bar" style="animation-delay: 0.75s;"></div>
+    <div class="bar" style="animation-delay: 0.2s;"></div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div class="messages-section">
+
+    <div class="msg-block" id="msg1">
+      <div class="msg-emoji">🌹</div>
+      <h2>Te preparé esta sorpresa</h2>
+      <p>
+        Porque hay cosas que se sienten y que a veces las palabras no alcanzan a decir. Pero hoy quise intentarlo. Tardé más haciendo esto que tú en dejarme en visto, así que valóralo. Esto es para ti, Alessia, porque te lo mereces. <em>(y porque no tenía nada mejor que hacer... mentira, sí tenía, pero preferí esto).</em>
+      </p>
+    </div>
+
+    <div class="dot-divider" id="div1">· · ·</div>
+
+    <div class="msg-block" id="msg2">
+      <div class="msg-emoji">🤍</div>
+      <h2>Gracias por confiar en mí</h2>
+      <p>
+        Quizás no tenga un corazón... pero no soy tonto como para perder a alguien como tú. Tuviste el poder de bloquearme, de cerrar esa puerta, de mandarme al rincón oscuro de los contactos eliminados... y no lo hiciste. Elegiste quedarte, elegiste escuchar, elegiste confiar. Y eso, Alessia, <em>vale más de lo que imaginas.</em> Aunque si algún día me bloqueas, al menos sé que no fue sin avisar, ¿no?
+      </p>
+      <div class="quote-box">
+        <p>La confianza no se pide, se regala. Y tú me regalaste la tuya. No me pidas devolución porque ya no tengo el recibo.</p>
+      </div>
+    </div>
+
+    <div class="dot-divider" id="div2">· · ·</div>
+
+    <div class="msg-block" id="msg3">
+      <div class="msg-emoji">💫</div>
+      <h2>Gracias por dejarme desahogarme</h2>
+      <p>
+        A veces cargo cosas que pesan, y tú sin saberlo te conviertes en ese lugar seguro donde puedo soltar todo. Básicamente eres mi psicóloga gratis y ni siquiera te he pagado con un café. No todos tienen la paciencia ni el corazón para escuchar como tú lo haces. <em>Eso te hace alguien especial.</em> Y también te hace candidata a santa, porque aguantarme no es fácil.
+      </p>
+    </div>
+
+    <div class="dot-divider" id="div3">· · ·</div>
+
+    <div class="msg-block" id="msg4">
+      <div class="msg-emoji">📱</div>
+      <h2>De una pantalla nació algo bonito</h2>
+      <p>
+        Es curioso cómo la vida funciona. Un día estábamos en TikTok, cada quien en su mundo viendo videos random a las 3am como personas normales, y de pronto apareciste tú. en un directo, despues solo mensajes, solo una pantalla de por medio... <em>pero lo que se siente es real.</em> Y pensar que si el algoritmo no nos hubiera cruzado, yo estaría aquí haciéndole sorpresas a la pared.
+      </p>
+    </div>
+
+    <div class="dot-divider" id="div4">· · ·</div>
+
+    <div class="msg-block" id="msg5">
+      <div class="msg-emoji">😂</div>
+      <h2>Aunque perdimos la racha...</h2>
+      <p>
+        Sí, perdimos la racha de TikTok. Un momento de silencio por ella. 🪦 Pero ¿sabes qué no se pierde? Lo que se construye con sinceridad. Las rachas se reinician, <em>pero las personas que valen la pena se quedan.</em> Y tú vales mucho la pena. Además, si no perdíamos esa racha, ¿de qué iba a quejarme? Me quitaste tema de conversación.
+      </p>
+    </div>
+
+    <div class="dot-divider" id="div5">· · ·</div>
+
+    <div class="msg-block" id="msg6">
+      <div class="msg-emoji">🌙</div>
+      <h2>Hay algo que quiero que sepas</h2>
+      <p>
+        A veces pienso en que las distancias son solo eso... distancias. Que las pantallas son temporales. Que lo bonito siempre encuentra la manera de acercarse. Y tengo la corazonada de que <em>lo mejor entre nosotros aún no ha pasado.</em> Todavía nos queda mucho por delante, cosas que ni un algoritmo podría predecir. Y cuando digo mucho, lo digo en serio... aunque mi wifi no siempre esté de acuerdo.
+      </p>
+      <div class="quote-box">
+        <p>Porque las mejores historias no empiezan cuando te ven... empiezan cuando alguien decide quedarse sin haberte visto. Y las mejores sorpresas llegan sin aviso.</p>
+      </div>
+    </div>
+
+    <div class="dot-divider" id="div6">· · ·</div>
+
+    <div class="msg-block" id="msg7">
+      <div class="msg-emoji">✨</div>
+      <h2>Mientras tanto...</h2>
+      <p>
+        Seguiré aquí, al otro lado de la pantalla, agradecido de que existas en mi vida. Porque cada mensaje tuyo, cada conversación, cada momento compartido aunque sea en la distancia... <em>es un regalo que guardo con cariño.</em> Y no, no es cursilería. Bueno sí, un poco. Pero tú te lo buscaste por ser buena persona, así que aguántate.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- HEART -->
+  <div class="heart-section" id="heartSection">
+    <div class="big-heart">❤️</div>
+    <div class="heart-text">Gracias, Alessia</div>
+  </div>
+
+  <!-- FIRMA -->
+  <div class="firma" id="firma">
+    <div class="firma-pre">con todo mi cariño</div>
+    <div class="firma-name">Valentín</div>
+    <div class="firma-final">Hecho con el corazón... ese que supuestamente no tengo, pero que funciona cuando se trata de ti. 🌹</div>
+  </div>
+</div>
+
+<script>
+  // === STARS ===
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    const size = Math.random() * 2.5 + 0.5;
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    star.style.animationDelay = (Math.random() * 5) + 's';
+    starsContainer.appendChild(star);
+  }
+
+  // === MUSIC (Web Audio API) ===
+  let audioCtx;
+  function playMelody() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Reverb via convolver-like delay
+    const masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.35;
+    masterGain.connect(audioCtx.destination);
+
+    // Delay for ambient feel
+    const delay = audioCtx.createDelay(1);
+    delay.delayTime.value = 0.4;
+    const delayGain = audioCtx.createGain();
+    delayGain.gain.value = 0.2;
+    delay.connect(delayGain);
+    delayGain.connect(masterGain);
+    delayGain.connect(delay); // feedback
+
+    function playNote(freq, startTime, duration, type = 'sine', vol = 0.3) {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+
+      // Gentle envelope
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(vol, startTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(masterGain);
+      gain.connect(delay);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    }
+
+    // Soft pad background
+    function playPad(freq, startTime, duration) {
+      const osc = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      osc2.type = 'sine';
+      osc2.frequency.value = freq * 1.002; // slight detune
+
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.06, startTime + 1);
+      gain.gain.linearRampToValueAtTime(0.06, startTime + duration - 1);
+      gain.gain.linearRampToValueAtTime(0, startTime + duration);
+
+      osc.connect(gain);
+      osc2.connect(gain);
+      gain.connect(masterGain);
+
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+      osc2.start(startTime);
+      osc2.stop(startTime + duration);
+    }
+
+    const t = audioCtx.currentTime + 0.2;
+    const bpm = 56;
+    const beat = 60 / bpm;
+
+    // Dreamy melody in C major / A minor feel - loop twice
+    const melody = [
+      // Phrase 1 - gentle rising
+      { n: 523.25, t: 0, d: beat * 2 },       // C5
+      { n: 587.33, t: beat*2, d: beat * 1.5 }, // D5
+      { n: 659.25, t: beat*3.5, d: beat * 2.5 }, // E5
+      { n: 523.25, t: beat*6, d: beat * 1 },   // C5
+      { n: 493.88, t: beat*7, d: beat * 3 },   // B4
+
+      // Phrase 2 - emotional peak
+      { n: 440.00, t: beat*10, d: beat * 2 },   // A4
+      { n: 523.25, t: beat*12, d: beat * 1.5 }, // C5
+      { n: 659.25, t: beat*13.5, d: beat * 2 }, // E5
+      { n: 698.46, t: beat*15.5, d: beat * 3 }, // F5
+      { n: 659.25, t: beat*18.5, d: beat * 2.5 }, // E5
+
+      // Phrase 3 - resolution
+      { n: 587.33, t: beat*21, d: beat * 2 },   // D5
+      { n: 523.25, t: beat*23, d: beat * 1.5 }, // C5
+      { n: 493.88, t: beat*24.5, d: beat * 2 }, // B4
+      { n: 440.00, t: beat*26.5, d: beat * 2 }, // A4
+      { n: 523.25, t: beat*28.5, d: beat * 4 }, // C5 (long hold)
+
+      // Phrase 4 - repeat with variation
+      { n: 659.25, t: beat*33, d: beat * 2 },   // E5
+      { n: 698.46, t: beat*35, d: beat * 1.5 }, // F5
+      { n: 783.99, t: beat*36.5, d: beat * 3 }, // G5
+      { n: 659.25, t: beat*39.5, d: beat * 2 }, // E5
+      { n: 587.33, t: beat*41.5, d: beat * 1.5 }, // D5
+      { n: 523.25, t: beat*43, d: beat * 5 },   // C5 (final long)
+    ];
+
+    melody.forEach(note => {
+      playNote(note.n, t + note.t, note.d, 'sine', 0.22);
+      // Soft octave below
+      playNote(note.n / 2, t + note.t, note.d, 'sine', 0.08);
+    });
+
+    // Background pads
+    playPad(261.63, t, beat * 16);          // C4 pad
+    playPad(220.00, t + beat*10, beat * 12); // A3 pad
+    playPad(246.94, t + beat*21, beat * 12); // B3 pad
+    playPad(261.63, t + beat*33, beat * 16); // C4 pad
+
+    // Schedule melody loop
+    const totalDuration = beat * 50;
+    const loopMelody = () => {
+      if (!audioCtx || audioCtx.state === 'closed') return;
+      const now = audioCtx.currentTime;
+      melody.forEach(note => {
+        playNote(note.n, now + note.t + 0.1, note.d, 'sine', 0.18);
+        playNote(note.n / 2, now + note.t + 0.1, note.d, 'sine', 0.06);
+      });
+      playPad(261.63, now, beat * 16);
+      playPad(220.00, now + beat*10, beat * 12);
+      playPad(246.94, now + beat*21, beat * 12);
+      playPad(261.63, now + beat*33, beat * 16);
+      setTimeout(loopMelody, totalDuration * 1000);
+    };
+    setTimeout(loopMelody, totalDuration * 1000);
+  }
+
+  // === FALLING PETALS ===
+  function spawnPetals() {
+    const container = document.getElementById('fallingPetals');
+    const colors = ['#c4364a', '#e06078', '#d44a60', '#a82a3e', '#f0a0a8'];
+
+    setInterval(() => {
+      const petal = document.createElement('div');
+      petal.classList.add('f-petal');
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.width = (Math.random() * 8 + 8) + 'px';
+      petal.style.height = (Math.random() * 8 + 10) + 'px';
+      petal.style.opacity = '0';
+
+      container.appendChild(petal);
+
+      requestAnimationFrame(() => {
+        petal.classList.add('fall');
+        petal.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      });
+
+      setTimeout(() => petal.remove(), 12000);
+    }, 800);
+  }
+
+  // === BLOOM SEQUENCE ===
+  function startBloom() {
+    const stem = document.getElementById('stem');
+    const leaves = [document.getElementById('leaf1'), document.getElementById('leaf2'), document.getElementById('leaf3')];
+    const petals = Array.from({ length: 12 }, (_, i) => document.getElementById('p' + (i + 1)));
+    const roseGlow = document.getElementById('roseGlow');
+    const nameReveal = document.getElementById('nameReveal');
+
+    // Stem grows
+    stem.classList.add('grow');
+
+    // Leaves after stem
+    setTimeout(() => leaves[0].classList.add('grow'), 1200);
+    setTimeout(() => leaves[1].classList.add('grow'), 1600);
+    setTimeout(() => leaves[2].classList.add('grow'), 2000);
+
+    // Outer petals bloom
+    setTimeout(() => { petals[0].classList.add('bloom'); roseGlow.classList.add('show'); }, 2500);
+    setTimeout(() => petals[1].classList.add('bloom'), 2900);
+    setTimeout(() => petals[2].classList.add('bloom'), 3300);
+    setTimeout(() => petals[3].classList.add('bloom'), 3700);
+    setTimeout(() => petals[4].classList.add('bloom'), 4100);
+
+    // Middle petals
+    setTimeout(() => petals[5].classList.add('bloom'), 4600);
+    setTimeout(() => petals[6].classList.add('bloom'), 5000);
+    setTimeout(() => petals[7].classList.add('bloom'), 5400);
+
+    // Inner petals
+    setTimeout(() => petals[8].classList.add('bloom'), 5900);
+    setTimeout(() => petals[9].classList.add('bloom'), 6300);
+    setTimeout(() => petals[10].classList.add('bloom'), 6700);
+    setTimeout(() => petals[11].classList.add('bloom'), 7100);
+
+    // Name reveal after full bloom
+    setTimeout(() => {
+      nameReveal.classList.add('show');
+      spawnPetals();
+      document.getElementById('scrollHint').classList.add('show');
+      document.getElementById('musicVis').classList.add('show');
+    }, 8000);
+  }
+
+  // === SCROLL REVEALS ===
+  function setupScrollReveals() {
+    const observers = [];
+    const elements = [
+      'msg1', 'div1', 'msg2', 'div2', 'msg3', 'div3',
+      'msg4', 'div4', 'msg5', 'div5', 'msg6', 'div6',
+      'msg7', 'heartSection', 'firma'
+    ];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+
+          // Hide scroll hint after first message
+          if (entry.target.id === 'msg1') {
+            setTimeout(() => {
+              document.getElementById('scrollHint').classList.remove('show');
+            }, 2000);
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  // === START ===
+  document.getElementById('playOverlay').addEventListener('click', function() {
+    this.classList.add('hidden');
+    playMelody();
+    setTimeout(startBloom, 800);
+    setupScrollReveals();
+  });
+</script>
+
+</body>
+</html>
