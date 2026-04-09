@@ -4,106 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Para Ti Alexia 🌹</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body,html{width:100%;height:100%;overflow:hidden;font-family:'Playfair Display',serif}
+body,html{width:100%;height:100%;overflow:hidden;font-family:'Cormorant Garamond',serif}
 
-/* PANTALLA PREGUNTA */
 #screen-ask{
   position:fixed;inset:0;z-index:100;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:radial-gradient(ellipse at center,#1a0a0a 0%,#0a0000 100%);
+  background:radial-gradient(ellipse at center,#1a0008 0%,#060003 100%);
   color:#ffd6d6;text-align:center;padding:20px;
   transition:opacity .8s ease;
 }
-#screen-ask h1{font-family:'Great Vibes',cursive;font-size:clamp(2.2rem,8vw,4rem);margin-bottom:30px;text-shadow:0 0 30px rgba(255,80,80,.5)}
-#screen-ask .buttons{display:flex;gap:20px}
-#screen-ask button{
-  font-family:'Great Vibes',cursive;font-size:1.6rem;
-  padding:14px 44px;border:2px solid #ff6b6b;border-radius:50px;
-  background:transparent;color:#ffd6d6;cursor:pointer;
-  transition:all .3s ease;
+#screen-ask h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.2rem,8vw,4rem);margin-bottom:40px;
+  animation:breathe 3s ease-in-out infinite;
 }
-#screen-ask button:hover,#screen-ask button:active{background:#ff6b6b;color:#1a0a0a;transform:scale(1.08)}
+@keyframes breathe{
+  0%,100%{text-shadow:0 0 40px rgba(255,80,100,.6)}
+  50%{text-shadow:0 0 80px rgba(255,80,100,1),0 0 120px rgba(255,80,100,.5)}
+}
+#screen-ask .buttons{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+#screen-ask button{
+  font-family:'Great Vibes',cursive;font-size:1.7rem;
+  padding:14px 50px;border:1.5px solid rgba(255,107,107,.6);border-radius:50px;
+  background:rgba(255,107,107,.07);color:#ffd6d6;cursor:pointer;
+  transition:all .3s;backdrop-filter:blur(4px);
+}
+#screen-ask button:hover,#screen-ask button:active{
+  background:rgba(255,107,107,.85);color:#1a0008;
+  transform:scale(1.08);box-shadow:0 0 30px rgba(255,80,80,.5);
+}
 
-/* PANTALLA MENTIROSA */
 #screen-no{
   position:fixed;inset:0;z-index:100;display:none;
   flex-direction:column;align-items:center;justify-content:center;
-  background:#0a0000;color:#ff4444;text-align:center;padding:20px;
+  background:#060003;color:#ff4444;text-align:center;padding:20px;
+  transition:opacity 1s ease;
 }
-#screen-no h1{font-family:'Great Vibes',cursive;font-size:clamp(3rem,12vw,6rem);animation:shake .4s infinite;text-shadow:0 0 40px #ff0000}
+#screen-no h1{
+  font-family:'Great Vibes',cursive;font-size:clamp(3rem,12vw,6rem);
+  animation:shake .4s infinite;text-shadow:0 0 40px #ff0000;
+}
 @keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 
-/* PANTALLA PRINCIPAL */
 #screen-main{
   position:fixed;inset:0;display:none;
   flex-direction:column;align-items:center;justify-content:center;
   background:radial-gradient(ellipse at 30% 50%,#2a0515 0%,#0d0208 60%,#000 100%);
   color:#ffe0ec;text-align:center;padding:20px;overflow:hidden;
 }
-#screen-main h1{
+
+/* ── ROSA ── */
+.rose-container{
+  z-index:10;position:relative;
+  width:clamp(140px,38vw,220px);height:clamp(175px,47vw,275px);
+  margin-bottom:18px;
+  opacity:0;animation:fadeUp 1.2s ease .2s forwards;
+}
+.rose-svg{width:100%;height:100%;filter:drop-shadow(0 0 28px rgba(255,50,80,.75));overflow:visible}
+
+.petal-svg{transform-origin:center center}
+.petal-svg.fly{animation:var(--fly-anim) 1.4s cubic-bezier(.2,0,.6,1) forwards}
+
+@keyframes fly-tl{to{transform:translate(-160px,-200px) rotate(-300deg) scale(0);opacity:0}}
+@keyframes fly-tr{to{transform:translate( 160px,-200px) rotate( 300deg) scale(0);opacity:0}}
+@keyframes fly-l {to{transform:translate(-200px, -80px) rotate(-240deg) scale(0);opacity:0}}
+@keyframes fly-r {to{transform:translate( 200px, -80px) rotate( 240deg) scale(0);opacity:0}}
+@keyframes fly-bl{to{transform:translate(-120px, 120px) rotate(-180deg) scale(0);opacity:0}}
+@keyframes fly-br{to{transform:translate( 120px, 120px) rotate( 180deg) scale(0);opacity:0}}
+@keyframes fly-up{to{transform:translate(   0px,-230px) rotate( 360deg) scale(0);opacity:0}}
+@keyframes fly-ul{to{transform:translate( -80px,-220px) rotate(-330deg) scale(0);opacity:0}}
+@keyframes fly-ur{to{transform:translate(  80px,-220px) rotate( 330deg) scale(0);opacity:0}}
+
+.stem-group{transition:opacity 1s ease}
+
+/* ── TEXTOS FASE 1 ──
+   Usan visibility+opacity para que al ocultarse
+   NO ocupen espacio (display:none al final)       */
+#phase1{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  z-index:2;position:relative;
+  transition:opacity 1s ease;
+}
+#main-title{
   font-family:'Great Vibes',cursive;font-size:clamp(2rem,7vw,3.8rem);
   opacity:0;transform:translateY(30px);
   animation:fadeUp 1.5s ease .5s forwards;
-  text-shadow:0 0 25px rgba(255,100,150,.6);
-  line-height:1.3;z-index:2;position:relative;
+  text-shadow:0 0 25px rgba(255,100,150,.7);
+  line-height:1.4;
 }
-#screen-main p{
+#main-sub{
   font-family:'Great Vibes',cursive;font-size:clamp(1.3rem,4.5vw,2.2rem);
   opacity:0;animation:fadeUp 1.5s ease 1.5s forwards;
-  margin-top:15px;color:#ffb3cc;z-index:2;position:relative;
+  color:#ffb3cc;
 }
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* ROSA CENTRAL */
-.rose-container{z-index:2;position:relative;margin-bottom:20px;opacity:0;animation:fadeUp 1.5s ease .2s forwards}
-.rose-svg{width:clamp(120px,35vw,200px);height:auto;filter:drop-shadow(0 0 30px rgba(255,50,80,.7))}
-
-/* PÉTALOS CAYENDO */
-.petal{
-  position:fixed;z-index:1;opacity:0;pointer-events:none;
-  animation:fall linear infinite;
+/* ── BLOQUE GRACIAS (fase 2) ──
+   Empieza con display:none para NO solapar          */
+#gracias-block{
+  display:none;                        /* ← oculto del todo al inicio */
+  flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;
+  opacity:0;transform:scale(.78);
+  transition:opacity 1.4s ease, transform 1.4s cubic-bezier(.2,0,.3,1);
+  z-index:11;padding:0 24px;
+  position:absolute;                   /* no afecta al flujo mientras esté oculto */
 }
+#gracias-block.visible{
+  display:flex;                        /* paso 1: poner en DOM */
+}
+#gracias-block.show{
+  opacity:1;transform:scale(1);        /* paso 2 (frame siguiente): animar entrada */
+}
+.gracias-text{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(3.5rem,14vw,7rem);
+  color:#ffccd8;
+  animation:pulseGlow 2.5s ease-in-out infinite;
+}
+@keyframes pulseGlow{
+  0%,100%{text-shadow:0 0 40px rgba(255,100,150,.8),0 0 80px rgba(255,50,100,.4)}
+  50%{text-shadow:0 0 70px rgba(255,150,180,1),0 0 140px rgba(255,80,130,.7)}
+}
+.gracias-poem{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:clamp(.9rem,3vw,1.3rem);
+  color:#ffaabb;line-height:2;letter-spacing:.04em;
+  text-shadow:0 0 20px rgba(255,80,120,.4);
+  max-width:360px;
+}
+
+/* ── EFECTOS ── */
+.word-float{
+  position:fixed;z-index:1;pointer-events:none;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1rem,3.5vw,1.6rem);
+  color:rgba(255,180,200,.8);
+  opacity:0;white-space:nowrap;
+  animation:wordRise var(--dur) ease-in forwards;
+  text-shadow:0 0 10px rgba(255,100,150,.4);
+}
+@keyframes wordRise{
+  0%{opacity:0;transform:translateY(0) scale(.8)}
+  15%{opacity:.9}85%{opacity:.7}
+  100%{opacity:0;transform:translateY(-55vh) scale(1.1)}
+}
+.petal-fall{position:fixed;z-index:1;opacity:0;pointer-events:none;animation:fall linear infinite}
 @keyframes fall{
   0%{transform:translateY(-60px) rotate(0deg) scale(1);opacity:0}
-  10%{opacity:.9}
-  90%{opacity:.7}
+  10%{opacity:.9}90%{opacity:.7}
   100%{transform:translateY(110vh) rotate(720deg) scale(.5);opacity:0}
 }
-
-/* ORQUÍDEAS */
-.orchid{
-  position:fixed;z-index:1;opacity:0;pointer-events:none;
-  animation:floatOrchid linear infinite;
-}
-@keyframes floatOrchid{
-  0%{transform:translateY(-80px) rotate(0deg);opacity:0}
-  10%{opacity:.85}
-  90%{opacity:.6}
-  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
-/* BRILLOS */
 .sparkle{
-  position:fixed;width:4px;height:4px;background:#fff;border-radius:50%;
+  position:fixed;background:#fff;border-radius:50%;
   z-index:3;pointer-events:none;opacity:0;
   animation:twinkle 2s ease-in-out infinite;
 }
 @keyframes twinkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
-
-/* CORAZONES FLOTANTES */
 .heart-float{
   position:fixed;z-index:1;pointer-events:none;opacity:0;
-  animation:heartRise 4s ease-in infinite;
-  font-size:1.4rem;
+  animation:heartRise 4s ease-in infinite;font-size:1.4rem;
 }
 @keyframes heartRise{
   0%{transform:translateY(0) scale(.5);opacity:0}
   20%{opacity:.8}
   100%{transform:translateY(-110vh) scale(1.2);opacity:0}
 }
+
+#mute-btn{
+  position:fixed;bottom:22px;right:22px;z-index:200;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+  color:#ffd6d6;border-radius:50%;width:44px;height:44px;
+  font-size:1.2rem;cursor:pointer;transition:all .3s;display:none;
+  backdrop-filter:blur(6px);
+}
+#mute-btn:hover{background:rgba(255,255,255,.18)}
 </style>
 </head>
 <body>
@@ -112,8 +190,8 @@ body,html{width:100%;height:100%;overflow:hidden;font-family:'Playfair Display',
 <div id="screen-ask">
   <h1>¿Alexia, eres tú? 🌹</h1>
   <div class="buttons">
-    <button onclick="showMain()">Sí 💕</button>
-    <button onclick="showNo()">No</button>
+    <button onclick="handleYes()">Sí 💕</button>
+    <button onclick="handleNo()">No</button>
   </div>
 </div>
 
@@ -124,160 +202,343 @@ body,html{width:100%;height:100%;overflow:hidden;font-family:'Playfair Display',
 
 <!-- PRINCIPAL -->
 <div id="screen-main">
-  <div class="rose-container">
+
+  <!-- Rosa -->
+  <div class="rose-container" id="rose-wrap">
     <svg class="rose-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="rg1" cx="50%" cy="40%"><stop offset="0%" stop-color="#ff3355"/><stop offset="100%" stop-color="#8b0020"/></radialGradient>
-        <radialGradient id="rg2" cx="50%" cy="50%"><stop offset="0%" stop-color="#ff1a40"/><stop offset="100%" stop-color="#6b0018"/></radialGradient>
+        <radialGradient id="rg1" cx="50%" cy="40%">
+          <stop offset="0%" stop-color="#ff3355"/>
+          <stop offset="100%" stop-color="#8b0020"/>
+        </radialGradient>
+        <radialGradient id="rg2" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#ff1a40"/>
+          <stop offset="100%" stop-color="#6b0018"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
-      <!-- tallo -->
-      <path d="M100 150 Q95 190 98 250" stroke="#2d6b1e" stroke-width="4" fill="none"/>
-      <path d="M98 200 Q70 185 60 170" stroke="#2d6b1e" stroke-width="2" fill="#3a8a2a" opacity=".8"/>
-      <path d="M99 215 Q125 200 135 185" stroke="#2d6b1e" stroke-width="2" fill="#3a8a2a" opacity=".8"/>
-      <!-- pétalos rosa -->
-      <ellipse cx="100" cy="100" rx="42" ry="50" fill="url(#rg1)" opacity=".9"/>
-      <ellipse cx="80" cy="95" rx="30" ry="40" fill="url(#rg2)" transform="rotate(-15 80 95)" opacity=".85"/>
-      <ellipse cx="120" cy="95" rx="30" ry="40" fill="url(#rg2)" transform="rotate(15 120 95)" opacity=".85"/>
-      <ellipse cx="100" cy="80" rx="25" ry="30" fill="#ff4466" opacity=".8"/>
-      <ellipse cx="90" cy="85" rx="18" ry="25" fill="#ff2244" transform="rotate(-10 90 85)" opacity=".75"/>
-      <ellipse cx="110" cy="85" rx="18" ry="25" fill="#ff2244" transform="rotate(10 110 85)" opacity=".75"/>
-      <ellipse cx="100" cy="75" rx="12" ry="18" fill="#cc1133" opacity=".9"/>
+      <g class="stem-group" id="stem">
+        <path d="M100 155 Q95 195 98 255" stroke="#2d6b1e" stroke-width="4" fill="none"/>
+        <path d="M98 200 Q68 183 58 168" stroke="#2d6b1e" stroke-width="2.5" fill="#3a8a2a"/>
+        <path d="M99 218 Q128 202 138 188" stroke="#2d6b1e" stroke-width="2.5" fill="#3a8a2a"/>
+      </g>
+      <ellipse id="p1" class="petal-svg" style="--fly-anim:fly-l"  cx="80"  cy="112" rx="32" ry="44" fill="url(#rg2)" transform="rotate(-18 80 112)"  opacity=".88"/>
+      <ellipse id="p2" class="petal-svg" style="--fly-anim:fly-r"  cx="120" cy="112" rx="32" ry="44" fill="url(#rg2)" transform="rotate( 18 120 112)" opacity=".88"/>
+      <ellipse id="p3" class="petal-svg" style="--fly-anim:fly-bl" cx="88"  cy="130" rx="28" ry="38" fill="url(#rg1)" transform="rotate(-8 88 130)"   opacity=".82"/>
+      <ellipse id="p4" class="petal-svg" style="--fly-anim:fly-br" cx="112" cy="130" rx="28" ry="38" fill="url(#rg1)" transform="rotate( 8 112 130)"  opacity=".82"/>
+      <ellipse id="p5" class="petal-svg" style="--fly-anim:fly-tl" cx="100" cy="108" rx="42" ry="52" fill="url(#rg1)" opacity=".92"/>
+      <ellipse id="p6" class="petal-svg" style="--fly-anim:fly-ul" cx="88"  cy="100" rx="20" ry="28" fill="#ff3d5a" transform="rotate(-12 88 100)"  opacity=".80"/>
+      <ellipse id="p7" class="petal-svg" style="--fly-anim:fly-ur" cx="112" cy="100" rx="20" ry="28" fill="#ff3d5a" transform="rotate( 12 112 100)" opacity=".80"/>
+      <ellipse id="p8" class="petal-svg" style="--fly-anim:fly-up" cx="100" cy="88"  rx="14" ry="20" fill="#cc1133" filter="url(#glow)" opacity=".92"/>
+      <ellipse id="p9" class="petal-svg" style="--fly-anim:fly-tr" cx="100" cy="80"  rx="9"  ry="14" fill="#a0002a" opacity=".95"/>
     </svg>
   </div>
-  <h1>Para ti, Alexia 🌹<br>una rosa</h1>
-  <p>porque eres la más preciosa 💕</p>
-  
+
+  <!-- FASE 1: textos iniciales -->
+  <div id="phase1">
+    <h1 id="main-title">Para ti, Alexia 🌹<br>una rosa</h1>
+    <p  id="main-sub">porque eres la más preciosa 💕</p>
+  </div>
+
+  <!-- FASE 2: Gracias (oculto hasta que fase 1 desaparece) -->
+  <div id="gracias-block">
+    <div class="gracias-text">Gracias 🌹</div>
+    <div class="gracias-poem">
+      por existir en este mundo,<br>
+      por tu sonrisa que ilumina todo,<br>
+      por ser tú — única e irrepetible,<br>
+      la más bonita de todas 💕
+    </div>
+  </div>
+
 </div>
 
+<button id="mute-btn" onclick="toggleMute()">🔊</button>
+
 <script>
-// Audio base64
+/* ══════════════════════════════
+   AUDIO
+══════════════════════════════ */
+let audioCtx = null, masterGain = null, wetBus = null, muted = false;
 
+function initAudio() {
+  try {
+    audioCtx   = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.12;
+    masterGain.connect(audioCtx.destination);
 
-function showNo(){
-  document.getElementById('screen-ask').style.opacity='0';
-  setTimeout(()=>{
-    document.getElementById('screen-ask').style.display='none';
-    document.getElementById('screen-no').style.display='flex';
-    // After 3 seconds, transition to main
-    setTimeout(()=>{
-      document.getElementById('screen-no').style.opacity='0';
-      document.getElementById('screen-no').style.transition='opacity 1s ease';
-      setTimeout(()=>{
-        document.getElementById('screen-no').style.display='none';
-        document.getElementById('screen-main').style.display='flex';
-        startEffects();
-        playMusic();
-      },1000);
-    },3000);
-  },800);
+    const dry  = audioCtx.createGain();  dry.gain.value  = 0.60;
+    const rev  = makeReverb(4);
+    const revG = audioCtx.createGain();  revG.gain.value = 0.40;
+
+    dry.connect(masterGain);
+    rev.connect(revG);
+    revG.connect(masterGain);
+
+    wetBus = audioCtx.createGain();
+    wetBus.gain.value = 1;
+    wetBus.connect(dry);   // AudioNode → AudioNode ✓
+    wetBus.connect(rev);   // AudioNode → AudioNode ✓
+
+    scheduleMusic();
+    document.getElementById('mute-btn').style.display = 'block';
+  } catch(e) { console.warn('Audio:', e); }
 }
 
-function showMain(){
-  document.getElementById('screen-ask').style.opacity='0';
-  setTimeout(()=>{
-    document.getElementById('screen-ask').style.display='none';
-    document.getElementById('screen-main').style.display='flex';
-    startEffects();
-    playMusic();
-  },800);
+function toggleMute() {
+  if (!masterGain) return;
+  muted = !muted;
+  masterGain.gain.setTargetAtTime(muted ? 0 : 0.12, audioCtx.currentTime, 0.4);
+  document.getElementById('mute-btn').textContent = muted ? '🔇' : '🔊';
 }
 
-function playMusic(){
-  playRomanticBg();
+function makeReverb(secs) {
+  const conv = audioCtx.createConvolver();
+  const len  = audioCtx.sampleRate * secs;
+  const buf  = audioCtx.createBuffer(2, len, audioCtx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = buf.getChannelData(ch);
+    for (let i = 0; i < len; i++)
+      d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+  }
+  conv.buffer = buf;
+  return conv;
 }
 
-function playRomanticBg(){
-  try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const master=ctx.createGain();
-    master.gain.value=0.08;
-    master.connect(ctx.destination);
-    // Romantic chord progression loop
-    function playChord(freqs,start,dur){
-      freqs.forEach(f=>{
-        const osc=ctx.createOscillator();
-        const g=ctx.createGain();
-        osc.type='sine';
-        osc.frequency.value=f;
-        g.gain.setValueAtTime(0,start);
-        g.gain.linearRampToValueAtTime(0.3,start+0.5);
-        g.gain.setValueAtTime(0.3,start+dur-0.8);
-        g.gain.linearRampToValueAtTime(0,start+dur);
-        osc.connect(g);g.connect(master);
-        osc.start(start);osc.stop(start+dur);
+function strNote(freq, start, dur, vol) {
+  const osc  = audioCtx.createOscillator();
+  const lfo  = audioCtx.createOscillator();
+  const lfoG = audioCtx.createGain();
+  const filt = audioCtx.createBiquadFilter();
+  const g    = audioCtx.createGain();
+  osc.type = 'sawtooth'; osc.frequency.value = freq;
+  filt.type = 'lowpass'; filt.frequency.value = 880; filt.Q.value = 0.7;
+  lfo.type = 'sine'; lfo.frequency.value = 5.1;
+  lfoG.gain.value = freq * 0.012;
+  lfo.connect(lfoG); lfoG.connect(osc.frequency);
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(vol, start + 0.28);
+  g.gain.setValueAtTime(vol, start + dur - 0.7);
+  g.gain.linearRampToValueAtTime(0, start + dur);
+  osc.connect(filt); filt.connect(g); g.connect(wetBus);
+  osc.start(start); lfo.start(start);
+  osc.stop(start + dur + 0.1); lfo.stop(start + dur + 0.1);
+}
+
+function harpNote(freq, start, dur, vol) {
+  const osc = audioCtx.createOscillator();
+  const g   = audioCtx.createGain();
+  osc.type = 'sine'; osc.frequency.value = freq;
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(vol, start + 0.04);
+  g.gain.exponentialRampToValueAtTime(0.001, start + dur);
+  osc.connect(g); g.connect(wetBus);
+  osc.start(start); osc.stop(start + dur + 0.05);
+}
+
+function bassNote(freq, start, dur, vol) {
+  const osc  = audioCtx.createOscillator();
+  const filt = audioCtx.createBiquadFilter();
+  const g    = audioCtx.createGain();
+  osc.type = 'sine'; osc.frequency.value = freq;
+  filt.type = 'lowpass'; filt.frequency.value = 300;
+  g.gain.setValueAtTime(0, start);
+  g.gain.linearRampToValueAtTime(vol, start + 0.3);
+  g.gain.setValueAtTime(vol, start + dur - 0.5);
+  g.gain.linearRampToValueAtTime(0, start + dur);
+  osc.connect(filt); filt.connect(g); g.connect(wetBus);
+  osc.start(start); osc.stop(start + dur + 0.1);
+}
+
+function scheduleMusic() {
+  const bpm = 56, beat = 60 / bpm, bar = beat * 4;
+  const CHORDS = [
+    { bass: 110.00, vox: [220.00, 261.63, 329.63] },
+    { bass: 174.61, vox: [261.63, 349.23, 440.00] },
+    { bass: 130.81, vox: [261.63, 329.63, 392.00] },
+    { bass: 196.00, vox: [246.94, 293.66, 392.00] },
+  ];
+  const MEL = [
+    440, 392, 349.23, 329.63, 293.66, 261.63, 293.66, 329.63,
+    349.23, 392, 440, 493.88, 440, 392, 349.23, 0,
+    440, 493.88, 523.25, 493.88, 440, 392, 349.23, 329.63,
+    293.66, 261.63, 220, 246.94, 261.63, 293.66, 329.63, 0,
+  ];
+  const loopMs = CHORDS.length * 2 * bar * 1000;
+
+  function loop(delay) {
+    const t0 = audioCtx.currentTime + delay;
+    CHORDS.forEach((ch, ci) => {
+      const t = t0 + ci * bar;
+      bassNote(ch.bass, t, bar - .1, .28);
+      ch.vox.forEach(f => {
+        strNote(f, t, bar - .1, .10);
+        [0, beat*.5, beat*1, beat*1.5].forEach(d => {
+          harpNote(f, t + d, beat*.85, .14);
+          harpNote(f * 2, t + d + beat*.25, beat*.6, .06);
+        });
       });
-    }
-    function loopChords(){
-      const now=ctx.currentTime;
-      const d=4;
-      // C major -> Am -> F -> G (romantic progression)
-      playChord([261.6,329.6,392],now,d);
-      playChord([220,261.6,329.6],now+d,d);
-      playChord([174.6,220,261.6],now+d*2,d);
-      playChord([196,246.9,293.7],now+d*3,d);
-      // Second round with higher octave
-      playChord([261.6,329.6,392,523.2],now+d*4,d);
-      playChord([220,261.6,329.6,440],now+d*5,d);
-      playChord([174.6,220,261.6,349.2],now+d*6,d);
-      playChord([196,246.9,293.7,392],now+d*7,d);
-      setTimeout(loopChords,d*8*1000);
-    }
-    loopChords();
-  }catch(e){console.log('Web Audio not supported');}
+    });
+    CHORDS.forEach((ch, ci) => {
+      const t = t0 + (CHORDS.length + ci) * bar;
+      bassNote(ch.bass * .5, t, bar - .1, .20);
+      ch.vox.forEach(f => {
+        strNote(f * .5, t, bar - .1, .08);
+        [0, beat*.5, beat*1, beat*1.5].forEach(d => harpNote(f, t + d, beat*.85, .13));
+      });
+    });
+    MEL.forEach((freq, i) => {
+      if (!freq) return;
+      const t = t0 + i * beat;
+      strNote(freq, t, beat * .88, .18);
+      harpNote(freq * 2, t, beat * .70, .07);
+    });
+    setTimeout(() => loop(0), loopMs - 800);
+  }
+  loop(.15);
 }
 
-function startEffects(){
-  // Pétalos de rosa
-  setInterval(()=>{
-    const p=document.createElement('div');
-    p.className='petal';
-    p.innerHTML=pickRandom(['🌹','🥀','🌺','💐','🏵️']);
-    p.style.left=Math.random()*100+'vw';
-    p.style.fontSize=(12+Math.random()*20)+'px';
-    p.style.animationDuration=(4+Math.random()*5)+'s';
-    p.style.animationDelay=Math.random()*2+'s';
-    document.getElementById('screen-main').appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-  },300);
+/* ══════════════════════════════
+   NAVEGACIÓN
+══════════════════════════════ */
+function handleYes() {
+  initAudio();
+  fadeOut('screen-ask', () => startMain());
+}
+function handleNo() {
+  initAudio();
+  fadeOut('screen-ask', () => {
+    const no = document.getElementById('screen-no');
+    no.style.display = 'flex';
+    setTimeout(() => {
+      no.style.opacity = '0';
+      setTimeout(() => { no.style.display = 'none'; startMain(); }, 1000);
+    }, 3000);
+  });
+}
+function fadeOut(id, cb) {
+  const el = document.getElementById(id);
+  el.style.opacity = '0';
+  setTimeout(() => { el.style.display = 'none'; cb(); }, 800);
+}
+function startMain() {
+  document.getElementById('screen-main').style.display = 'flex';
+  startEffects();
+  setTimeout(blowPetals, 3800);
+}
 
-  // Orquídeas rojas
-  setInterval(()=>{
-    const o=document.createElement('div');
-    o.className='orchid';
-    o.innerHTML='🌺';
-    o.style.left=Math.random()*100+'vw';
-    o.style.fontSize=(18+Math.random()*18)+'px';
-    o.style.animationDuration=(5+Math.random()*4)+'s';
-    o.style.animationDelay=Math.random()*3+'s';
-    document.getElementById('screen-main').appendChild(o);
-    setTimeout(()=>o.remove(),14000);
-  },700);
+/* ══════════════════════════════
+   SECUENCIA DE LA ROSA
+   ─────────────────────────────
+   t=0        : pétalos empiezan a volar
+   t=720+1400 : último pétalo termina de volar (~2120ms)
+   t=+500     : tallo se desvanece
+   t=+1000    : rosa y TEXTOS FASE-1 se desvanecen (1s de transición)
+   t=+1100    : textos ya invisibles → aparece Gracias
+══════════════════════════════ */
+function blowPetals() {
+  const ids    = ['p1','p2','p3','p4','p5','p6','p7','p8','p9'];
+  const delays = [  0,  80, 160, 240, 340, 440, 520, 620, 720];
 
-  // Brillitos
-  for(let i=0;i<20;i++){
-    const s=document.createElement('div');
-    s.className='sparkle';
-    s.style.left=Math.random()*100+'vw';
-    s.style.top=Math.random()*100+'vh';
-    s.style.animationDelay=Math.random()*3+'s';
-    s.style.width=s.style.height=(2+Math.random()*4)+'px';
-    document.getElementById('screen-main').appendChild(s);
+  ids.forEach((id, i) => setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('fly');
+  }, delays[i]));
+
+  const lastFly = delays[ids.length - 1] + 1400; // tiempo en que el último pétalo termina
+
+  // 1️⃣ Tallo se desvanece
+  setTimeout(() => {
+    const stem = document.getElementById('stem');
+    if (stem) stem.style.opacity = '0';
+  }, lastFly + 200);
+
+  // 2️⃣ Rosa + textos fase-1 se desvanecen juntos (transición 1s)
+  setTimeout(() => {
+    setOpacity('rose-wrap', 0, '1s');
+    setOpacity('phase1',    0, '1s');
+  }, lastFly + 600);
+
+  // 3️⃣ Después de que la transición de 1s termina → ocultar del todo y mostrar Gracias
+  setTimeout(() => {
+    // Ocultar completamente para que no ocupen espacio
+    const p1 = document.getElementById('phase1');
+    const rw = document.getElementById('rose-wrap');
+    if (p1) p1.style.display = 'none';
+    if (rw) rw.style.display = 'none';
+
+    // Hacer visible el bloque (display:flex) sin opacidad aún
+    const gb = document.getElementById('gracias-block');
+    gb.classList.add('visible');
+
+    // Un frame después: añadir clase .show para disparar la transición de entrada
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      gb.classList.add('show');
+    }));
+  }, lastFly + 600 + 1100); // espera el fade de 1s + 100ms de margen
+}
+
+function setOpacity(id, val, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.transition = `opacity ${duration} ease`;
+  el.style.opacity = val;
+}
+
+/* ══════════════════════════════
+   EFECTOS VISUALES
+══════════════════════════════ */
+const WORDS = [
+  'eres única','mi favorita','siempre en mi mente',
+  'la más bonita','eres especial','te admiro',
+  'qué linda eres','me alegras el día','eres increíble',
+  'gracias por existir','eres mi alegría','qué hermosa eres',
+  'nunca te olvido','eres luz','mi favorita del mundo',
+  'un día te veré sonreír 💕',
+];
+
+function startEffects() {
+  const C = document.getElementById('screen-main');
+
+  setInterval(() => {
+    const p = document.createElement('div');
+    p.className = 'petal-fall';
+    p.textContent = rnd(['🌹','🥀','🌺','💐','🏵️']);
+    p.style.cssText = `left:${Math.random()*100}vw;font-size:${12+Math.random()*18}px;animation-duration:${4+Math.random()*5}s;animation-delay:${Math.random()*2}s`;
+    C.appendChild(p); setTimeout(() => p.remove(), 13000);
+  }, 320);
+
+  setInterval(() => {
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = rnd(['❤️','💕','💗','💖','🩷']);
+    h.style.cssText = `left:${Math.random()*100}vw;bottom:-30px;animation-delay:${Math.random()}s`;
+    C.appendChild(h); setTimeout(() => h.remove(), 5000);
+  }, 600);
+
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const sz = 2 + Math.random() * 4;
+    s.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-delay:${Math.random()*4}s;width:${sz}px;height:${sz}px`;
+    C.appendChild(s);
   }
 
-  // Corazones flotantes
-  setInterval(()=>{
-    const h=document.createElement('div');
-    h.className='heart-float';
-    h.innerHTML=pickRandom(['❤️','💕','💗','💖']);
-    h.style.left=Math.random()*100+'vw';
-    h.style.bottom='-30px';
-    h.style.animationDelay=Math.random()+'s';
-    document.getElementById('screen-main').appendChild(h);
-    setTimeout(()=>h.remove(),5000);
-  },500);
+  setInterval(() => {
+    const w = document.createElement('div');
+    w.className = 'word-float';
+    w.textContent = rnd(WORDS);
+    const dur = 5 + Math.random() * 4;
+    w.style.cssText = `left:${5+Math.random()*80}vw;bottom:${Math.random()*30}vh;--dur:${dur}s`;
+    C.appendChild(w); setTimeout(() => w.remove(), (dur + .5) * 1000);
+  }, 1800);
 }
 
-function pickRandom(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 </script>
 </body>
 </html>
