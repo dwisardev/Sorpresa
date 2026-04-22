@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#1a0a1f"/>
+<title>🎂 Feliz Cumpleaños Alexia 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;1,400&family=Italiana&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#1a0a1f;
+    --noche-claro:#2a1230;
+    --rosa:#ff6b9d;
+    --rosa-claro:#ffb3d1;
+    --rosa-suave:#ffd6e8;
+    --crema:#fff5e8;
+    --dorado:#ffd700;
+    --dorado-suave:#ffe98a;
+    --azul:#7fb3ff;
+    --verde:#a8e6a3;
+    --lila:#d4a5ff;
+    --vela:#ff8c42;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{
+    overflow-x:hidden;
+    background:var(--noche);
+    font-family:'Cormorant',serif;
+    color:var(--crema);
+    min-height:100vh;
+  }
+  body{
+    background:
+      radial-gradient(ellipse at 20% 20%,#3a1a4a 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 80%,#4a1a3a 0%,transparent 60%),
+      linear-gradient(180deg,#1a0a1f 0%,#2a1230 100%);
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+
+  /* estrellitas titilando de fondo */
+  .estrella-fondo{
+    position:fixed;
+    background:#fff;
+    border-radius:50%;
+    pointer-events:none;
+    animation:titilar ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes titilar{
+    0%,100%{opacity:0.2;}
+    50%{opacity:0.9;}
+  }
+
+  /* ================ TÍTULO ================ */
+  .titulo-cumple{
+    text-align:center;
+    z-index:5;
+    margin-bottom:20px;
+    animation:bajar 1.5s ease-out;
+  }
+  @keyframes bajar{
+    from{opacity:0;transform:translateY(-30px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .titulo-cumple .super{
+    font-family:'Italiana',serif;
+    font-size:clamp(0.7rem,2.5vw,0.9rem);
+    letter-spacing:0.6em;
+    color:var(--dorado-suave);
+    opacity:0.8;
+    padding-left:0.6em;
+    margin-bottom:5px;
+  }
+  .titulo-cumple h1{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2.5rem,9vw,4rem);
+    color:var(--rosa-claro);
+    line-height:1;
+    text-shadow:
+      0 0 20px rgba(255,107,157,0.6),
+      0 0 40px rgba(255,107,157,0.3);
+  }
+  .titulo-cumple .edad{
+    font-family:'Italiana',serif;
+    font-size:clamp(1rem,3vw,1.3rem);
+    letter-spacing:0.4em;
+    color:var(--dorado);
+    margin-top:8px;
+    padding-left:0.4em;
+  }
+
+  /* ================ GLOBOS ================ */
+  .globos{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden;
+  }
+  .globo{
+    position:absolute;
+    width:50px;
+    height:65px;
+    animation:flotar ease-in-out infinite;
+  }
+  .globo svg{width:100%;height:100%;}
+  @keyframes flotar{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-25px) rotate(3deg);}
+  }
+
+  /* ================ ESCENA TORTA ================ */
+  .escena-torta{
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:400px;
+    margin:30px 0;
+  }
+  .torta-svg{
+    width:100%;
+    height:auto;
+    filter:drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+  }
+
+  /* Llamas de las velitas */
+  .llama{
+    transform-origin:center bottom;
+    transform-box:fill-box;
+    animation:bailar 0.4s ease-in-out infinite alternate;
+  }
+  @keyframes bailar{
+    0%{transform:scaleY(1) scaleX(1) rotate(-3deg);}
+    100%{transform:scaleY(1.15) scaleX(0.9) rotate(3deg);}
+  }
+  .vela-grupo.apagada .llama,
+  .vela-grupo.apagada .resplandor{
+    opacity:0;
+    transition:opacity 0.4s;
+  }
+  .vela-grupo.apagada .humo{
+    opacity:1;
+    animation:subirHumo 2s ease-out forwards;
+  }
+  .humo{
+    opacity:0;
+    transform-origin:center bottom;
+    transform-box:fill-box;
+  }
+  @keyframes subirHumo{
+    0%{opacity:0.8;transform:translateY(0) scale(0.5);}
+    100%{opacity:0;transform:translateY(-30px) scale(1.5);}
+  }
+  .resplandor{
+    transition:opacity 0.4s;
+  }
+
+  /* ================ MENSAJES ================ */
+  .mensaje-torta{
+    text-align:center;
+    margin-top:20px;
+    z-index:5;
+    min-height:80px;
+  }
+  .pide-deseo{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(1.6rem,5vw,2.2rem);
+    color:var(--dorado-suave);
+    text-shadow:0 0 20px rgba(255,233,138,0.4);
+    animation:brillar 2s ease-in-out infinite;
+  }
+  @keyframes brillar{
+    0%,100%{opacity:0.85;}
+    50%{opacity:1;}
+  }
+  .contador-velitas{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--rosa-suave);
+    opacity:0.7;
+    margin-top:8px;
+  }
+
+  /* ================ CONTROLES ================ */
+  .controles{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
+    margin-top:25px;
+    z-index:5;
+    width:100%;
+    max-width:340px;
+  }
+  .btn-soplar, .btn-apagar{
+    background:linear-gradient(135deg, var(--rosa) 0%, #ff8fb3 100%);
+    color:white;
+    border:none;
+    padding:16px 35px;
+    font-family:'Italiana',serif;
+    font-size:1rem;
+    letter-spacing:0.25em;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:
+      0 8px 25px rgba(255,107,157,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+    transition:all 0.3s;
+    width:100%;
+    text-transform:uppercase;
+  }
+  .btn-soplar{
+    background:linear-gradient(135deg, #7fb3ff 0%, #a4c8ff 100%);
+    box-shadow:
+      0 8px 25px rgba(127,179,255,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-soplar.activo{
+    background:linear-gradient(135deg, #ff6b9d 0%, #ff8fb3 100%);
+    animation:pulsar-boton 1.5s ease-in-out infinite;
+  }
+  @keyframes pulsar-boton{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+  }
+  .btn-soplar:active, .btn-apagar:active{transform:scale(0.96);}
+  .btn-soplar:hover, .btn-apagar:hover{transform:translateY(-2px);}
+
+  .indicador-microfono{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:0.9rem;
+    color:var(--rosa-suave);
+    opacity:0.7;
+    text-align:center;
+    min-height:24px;
+  }
+  .barra-volumen{
+    width:100%;
+    height:6px;
+    background:rgba(255,255,255,0.1);
+    border-radius:3px;
+    overflow:hidden;
+    margin-top:5px;
+    display:none;
+  }
+  .barra-volumen.activa{display:block;}
+  .barra-volumen-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--azul), var(--rosa), var(--dorado));
+    border-radius:3px;
+    transition:width 0.1s ease-out;
+  }
+
+  /* ================ PANTALLA FINAL ================ */
+  .panel-final{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(ellipse at center, #2a1230 0%, #0a0510 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 1.5s ease;
+    padding:30px;
+    text-align:center;
+  }
+  .panel-final.mostrar{
+    opacity:1;
+    pointer-events:all;
+  }
+  .panel-final h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2.5rem,8vw,3.5rem);
+    color:var(--rosa-claro);
+    margin-bottom:15px;
+    text-shadow:0 0 30px rgba(255,179,209,0.5);
+    line-height:1.1;
+  }
+  .panel-final p{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:clamp(1rem,3.5vw,1.2rem);
+    color:var(--rosa-suave);
+    opacity:0.9;
+    max-width:400px;
+    line-height:1.6;
+    margin-bottom:30px;
+  }
+  .btn-regalos{
+    background:linear-gradient(135deg, var(--dorado) 0%, #ffe98a 100%);
+    color:var(--noche);
+    border:none;
+    padding:18px 50px;
+    font-family:'Italiana',serif;
+    font-size:1.1rem;
+    letter-spacing:0.3em;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,215,0,0.5);
+    transition:all 0.3s;
+    text-transform:uppercase;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .btn-regalos:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 15px 40px rgba(255,215,0,0.6);}
+  .btn-regalos:active{transform:scale(0.96);}
+
+  /* ================ CONFETI ================ */
+  .confeti{
+    position:fixed;
+    width:10px;
+    height:14px;
+    pointer-events:none;
+    z-index:400;
+    animation:caer-confeti linear forwards;
+  }
+  @keyframes caer-confeti{
+    0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(720deg);opacity:0.7;}
+  }
+
+  /* ================ MÚSICA ================ */
+  .control-musica{
+    position:fixed;bottom:20px;right:20px;
+    width:50px;height:50px;border-radius:50%;
+    background:rgba(255,107,157,0.85);
+    border:1px solid rgba(255,233,138,0.5);
+    color:white;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+    transition:all 0.3s;
+  }
+  .control-musica:active{transform:scale(0.9);}
+  .control-musica:hover{background:var(--rosa);}
+
+  /* mini destello al apagar */
+  @keyframes destellito{
+    0%{transform:scale(1) rotate(0);opacity:1;}
+    100%{transform:scale(2.5) rotate(180deg);opacity:0;}
+  }
+  .destello{
+    position:absolute;
+    pointer-events:none;
+    color:var(--dorado);
+    font-size:1.5rem;
+    animation:destellito 0.6s ease-out forwards;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Globos flotando -->
+<div class="globos" id="globos"></div>
+
+<!-- Título -->
+<div class="titulo-cumple">
+  <div class="super">22 DE ABRIL</div>
+  <h1>Feliz Cumpleaños</h1>
+  <div class="edad">A · L · E · X · I · A &nbsp;·&nbsp; 19 AÑOS</div>
+</div>
+
+<!-- Torta -->
+<div class="escena-torta">
+  <svg class="torta-svg" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Gradiente piso de torta -->
+      <linearGradient id="pisoBase" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff5e8"/>
+        <stop offset="0.5" stop-color="#ffd6e8"/>
+        <stop offset="1" stop-color="#ffb3d1"/>
+      </linearGradient>
+      <linearGradient id="pisoMedio" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffd6e8"/>
+        <stop offset="0.5" stop-color="#ff9ec5"/>
+        <stop offset="1" stop-color="#ff6b9d"/>
+      </linearGradient>
+      <linearGradient id="pisoSup" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff0c2"/>
+        <stop offset="0.5" stop-color="#ffe28a"/>
+        <stop offset="1" stop-color="#ffb84d"/>
+      </linearGradient>
+      <!-- Crema decorativa -->
+      <linearGradient id="crema" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fffaf0"/>
+        <stop offset="1" stop-color="#ffe5cc"/>
+      </linearGradient>
+      <!-- Llama -->
+      <radialGradient id="llamaGrad" cx="0.5" cy="0.7">
+        <stop offset="0" stop-color="#fff5b3"/>
+        <stop offset="0.4" stop-color="#ffd700"/>
+        <stop offset="0.8" stop-color="#ff8c42"/>
+        <stop offset="1" stop-color="#ff4500"/>
+      </radialGradient>
+      <radialGradient id="resplandorGrad" cx="0.5" cy="0.5">
+        <stop offset="0" stop-color="#ffe98a" stop-opacity="0.8"/>
+        <stop offset="0.5" stop-color="#ff8c42" stop-opacity="0.3"/>
+        <stop offset="1" stop-color="#ff8c42" stop-opacity="0"/>
+      </radialGradient>
+      <!-- Plato -->
+      <linearGradient id="plato" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#d4d4e8"/>
+        <stop offset="1" stop-color="#9090b8"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Plato bajo la torta -->
+    <ellipse cx="200" cy="365" rx="170" ry="12" fill="#1a0a1f" opacity="0.5"/>
+    <ellipse cx="200" cy="362" rx="165" ry="10" fill="url(#plato)"/>
+    <ellipse cx="200" cy="358" rx="155" ry="6" fill="#e8e8f5"/>
+
+    <!-- Piso 1 (base, el más grande) -->
+    <rect x="60" y="280" width="280" height="80" rx="6" fill="url(#pisoBase)"/>
+    <!-- decoración base: chispas/lunares -->
+    <g fill="#ff6b9d" opacity="0.6">
+      <circle cx="90" cy="305" r="3"/>
+      <circle cx="130" cy="320" r="2.5"/>
+      <circle cx="170" cy="310" r="3"/>
+      <circle cx="210" cy="325" r="2.5"/>
+      <circle cx="250" cy="305" r="3"/>
+      <circle cx="290" cy="320" r="2.5"/>
+      <circle cx="320" cy="310" r="3"/>
+      <circle cx="105" cy="335" r="2"/>
+      <circle cx="195" cy="345" r="2"/>
+      <circle cx="270" cy="340" r="2"/>
+    </g>
+    <!-- Crema decorativa borde superior base -->
+    <path d="M 60 280 Q 75 270, 90 280 Q 105 270, 120 280 Q 135 270, 150 280 Q 165 270, 180 280 Q 195 270, 210 280 Q 225 270, 240 280 Q 255 270, 270 280 Q 285 270, 300 280 Q 315 270, 330 280 Q 345 270, 340 280 L 340 285 L 60 285 Z" fill="url(#crema)"/>
+
+    <!-- Piso 2 (medio) -->
+    <rect x="100" y="210" width="200" height="70" rx="6" fill="url(#pisoMedio)"/>
+    <!-- chispas -->
+    <g fill="#fff5e8" opacity="0.7">
+      <circle cx="125" cy="235" r="2.5"/>
+      <circle cx="155" cy="250" r="2"/>
+      <circle cx="185" cy="240" r="2.5"/>
+      <circle cx="215" cy="255" r="2"/>
+      <circle cx="245" cy="240" r="2.5"/>
+      <circle cx="275" cy="250" r="2"/>
+      <circle cx="140" cy="265" r="2"/>
+      <circle cx="200" cy="270" r="2"/>
+      <circle cx="260" cy="265" r="2"/>
+    </g>
+    <!-- Crema borde superior piso 2 -->
+    <path d="M 100 210 Q 115 200, 130 210 Q 145 200, 160 210 Q 175 200, 190 210 Q 205 200, 220 210 Q 235 200, 250 210 Q 265 200, 280 210 Q 295 200, 300 210 L 300 215 L 100 215 Z" fill="url(#crema)"/>
+
+    <!-- Piso 3 (superior, dorado) -->
+    <rect x="135" y="150" width="130" height="60" rx="6" fill="url(#pisoSup)"/>
+    <!-- chispas doradas -->
+    <g fill="#fff" opacity="0.6">
+      <circle cx="155" cy="170" r="2"/>
+      <circle cx="180" cy="185" r="2"/>
+      <circle cx="200" cy="172" r="2"/>
+      <circle cx="220" cy="185" r="2"/>
+      <circle cx="245" cy="170" r="2"/>
+      <circle cx="170" cy="195" r="1.5"/>
+      <circle cx="230" cy="195" r="1.5"/>
+    </g>
+    <!-- Crema borde superior piso 3 -->
+    <path d="M 135 150 Q 150 140, 165 150 Q 180 140, 195 150 Q 210 140, 225 150 Q 240 140, 255 150 Q 265 140, 265 150 L 265 155 L 135 155 Z" fill="url(#crema)"/>
+
+    <!-- VELITAS - 19 velitas distribuidas -->
+    <g id="velas-contenedor">
+      <!-- Las velitas se generarán por JS para que sean exactamente 19 -->
+    </g>
+  </svg>
+</div>
+
+<!-- Mensaje -->
+<div class="mensaje-torta">
+  <div class="pide-deseo" id="pideDeseo">Pide un deseo, Alexia ✨</div>
+  <div class="contador-velitas" id="contador">19 velitas encendidas</div>
+</div>
+
+<!-- Controles -->
+<div class="controles">
+  <button class="btn-soplar" id="btnSoplar" onclick="activarMicrofono()">🎤 SOPLAR AL MICRÓFONO</button>
+  <div class="barra-volumen" id="barraVol"><div class="barra-volumen-fill" id="barraFill"></div></div>
+  <div class="indicador-microfono" id="indMic">o si prefieres, usa el botón:</div>
+  <button class="btn-apagar" onclick="apagarUna()">💨 APAGAR UNA VELITA</button>
+</div>
+
+<!-- Pantalla final -->
+<div class="panel-final" id="panelFinal">
+  <h2>¡Que se cumplan<br>todos tus deseos!</h2>
+  <p>Te esperan tres sorpresas, Alexia.<br>Una por una, en el orden que tú quieras.</p>
+  <a href="2_regalos_alexia.html" class="btn-regalos">VER MIS SORPRESAS 🎁</a>
+</div>
+
+<!-- Música -->
+<button class="control-musica" id="btnMusica" onclick="toggleMusica()" aria-label="Música">♪</button>
+
+<script>
+  // ============ ESTRELLITAS DE FONDO ============
+  (function(){
+    for(let i=0;i<60;i++){
+      const e = document.createElement('div');
+      e.className = 'estrella-fondo';
+      const s = 0.5 + Math.random()*2;
+      e.style.width = s+'px';
+      e.style.height = s+'px';
+      e.style.left = Math.random()*100+'%';
+      e.style.top = Math.random()*100+'%';
+      e.style.animationDuration = (2+Math.random()*4)+'s';
+      e.style.animationDelay = Math.random()*4+'s';
+      document.body.appendChild(e);
+    }
+  })();
+
+  // ============ GLOBOS ============
+  const coloresGlobo = [
+    {fill:'#ff6b9d', cuerda:'#c14464'},
+    {fill:'#7fb3ff', cuerda:'#3a6db8'},
+    {fill:'#ffd700', cuerda:'#b8943a'},
+    {fill:'#a8e6a3', cuerda:'#5a9555'},
+    {fill:'#d4a5ff', cuerda:'#7a5ab8'},
+    {fill:'#ffb3d1', cuerda:'#c14464'},
+  ];
+  function crearGlobos(){
+    const cont = document.getElementById('globos');
+    const cant = window.innerWidth < 600 ? 8 : 14;
+    for(let i=0;i<cant;i++){
+      const g = document.createElement('div');
+      g.className = 'globo';
+      const color = coloresGlobo[i % coloresGlobo.length];
+      g.innerHTML = `<svg viewBox="0 0 50 65" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="bg${i}" cx="0.35" cy="0.35">
+            <stop offset="0" stop-color="white" stop-opacity="0.8"/>
+            <stop offset="0.3" stop-color="${color.fill}" stop-opacity="0.9"/>
+            <stop offset="1" stop-color="${color.fill}"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="25" cy="22" rx="20" ry="22" fill="url(#bg${i})"/>
+        <path d="M 22 44 L 28 44 L 25 48 Z" fill="${color.cuerda}"/>
+        <path d="M 25 48 Q 23 54, 25 60 Q 27 62, 25 65" stroke="${color.cuerda}" stroke-width="0.8" fill="none" opacity="0.7"/>
+      </svg>`;
+      g.style.left = Math.random()*90 + 'vw';
+      g.style.top = Math.random()*70 + '%';
+      g.style.animationDuration = (3 + Math.random()*3) + 's';
+      g.style.animationDelay = Math.random()*3 + 's';
+      g.style.transform = `scale(${0.7 + Math.random()*0.6})`;
+      cont.appendChild(g);
+    }
+  }
+  crearGlobos();
+
+  // ============ GENERAR 19 VELITAS ============
+  // Distribuidas en 3 filas sobre el piso superior dorado (que va de x=135 a x=265)
+  // Realmente repartimos sobre los 3 pisos para que se vean lindas
+  const cont = document.getElementById('velas-contenedor');
+  // Posiciones: (x, y_base, altura_vela)
+  // Piso superior (más velas, más pequeñas)
+  const posiciones = [
+    // Piso superior (8 velitas): y_base = 150 (el techo del piso superior)
+    {x:145,y:150,h:30,c:'#ff6b9d'},
+    {x:163,y:150,h:34,c:'#7fb3ff'},
+    {x:181,y:150,h:30,c:'#ffd700'},
+    {x:199,y:150,h:36,c:'#a8e6a3'},
+    {x:217,y:150,h:30,c:'#d4a5ff'},
+    {x:235,y:150,h:34,c:'#ff6b9d'},
+    {x:253,y:150,h:30,c:'#7fb3ff'},
+
+    // Piso medio (6 velitas): y_base = 210
+    {x:115,y:210,h:32,c:'#ffd700'},
+    {x:145,y:210,h:36,c:'#a8e6a3'},
+    {x:175,y:210,h:32,c:'#d4a5ff'},
+    {x:205,y:210,h:36,c:'#ff6b9d'},
+    {x:235,y:210,h:32,c:'#7fb3ff'},
+    {x:265,y:210,h:36,c:'#ffd700'},
+    {x:285,y:210,h:32,c:'#a8e6a3'},
+
+    // Piso base (5 velitas extra para llegar a 19): y_base = 280
+    {x:80,y:280,h:34,c:'#d4a5ff'},
+    {x:130,y:280,h:30,c:'#ff6b9d'},
+    {x:200,y:280,h:36,c:'#7fb3ff'},
+    {x:270,y:280,h:30,c:'#ffd700'},
+    {x:320,y:280,h:34,c:'#a8e6a3'},
+  ];
+
+  posiciones.forEach((p, i) => {
+    const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+    grp.setAttribute('class','vela-grupo');
+    grp.setAttribute('data-i', i);
+    const yTop = p.y - p.h; // tope de la vela
+    const yLlamaBase = yTop;
+
+    grp.innerHTML = `
+      <!-- Resplandor -->
+      <circle class="resplandor" cx="${p.x}" cy="${yLlamaBase - 6}" r="14" fill="url(#resplandorGrad)"/>
+      <!-- Cuerpo de la vela (rectángulo de color) -->
+      <rect x="${p.x-2.5}" y="${yTop}" width="5" height="${p.h}" rx="1" fill="${p.c}"/>
+      <!-- Rayitas blancas en la vela (decoración) -->
+      <line x1="${p.x-2.5}" y1="${yTop+8}" x2="${p.x+2.5}" y2="${yTop+8}" stroke="white" stroke-width="0.8" opacity="0.6"/>
+      <line x1="${p.x-2.5}" y1="${yTop+18}" x2="${p.x+2.5}" y2="${yTop+18}" stroke="white" stroke-width="0.8" opacity="0.6"/>
+      <!-- Mecha pequeña -->
+      <line x1="${p.x}" y1="${yTop}" x2="${p.x}" y2="${yTop-3}" stroke="#3a2218" stroke-width="0.8"/>
+      <!-- Llama -->
+      <ellipse class="llama" cx="${p.x}" cy="${yTop-6}" rx="3" ry="6" fill="url(#llamaGrad)"/>
+      <!-- Humo (oculto por defecto) -->
+      <path class="humo" d="M ${p.x} ${yTop} Q ${p.x-3} ${yTop-8}, ${p.x} ${yTop-15} Q ${p.x+3} ${yTop-22}, ${p.x} ${yTop-30}" stroke="#d8d8e0" stroke-width="2" fill="none" stroke-linecap="round"/>
+    `;
+    cont.appendChild(grp);
+  });
+
+  // ============ APAGAR VELITAS ============
+  const totalVelitas = posiciones.length;
+  let apagadas = 0;
+  const contadorEl = document.getElementById('contador');
+  const pideDeseo = document.getElementById('pideDeseo');
+
+  function actualizarContador(){
+    const restantes = totalVelitas - apagadas;
+    if(restantes === 0){
+      contadorEl.textContent = '¡Todas apagadas! 🎉';
+      pideDeseo.textContent = '¡Felicidades, Alexia! 💖';
+      lanzarConfeti();
+      setTimeout(()=>{
+        document.getElementById('panelFinal').classList.add('mostrar');
+      }, 1800);
+    } else {
+      contadorEl.textContent = `${restantes} velita${restantes===1?'':'s'} encendida${restantes===1?'':'s'}`;
+    }
+  }
+
+  function apagarVelaPorIndice(i){
+    const grp = document.querySelector(`.vela-grupo[data-i="${i}"]`);
+    if(!grp || grp.classList.contains('apagada')) return false;
+    grp.classList.add('apagada');
+    apagadas++;
+    crearDestello(grp);
+    actualizarContador();
+    return true;
+  }
+
+  function apagarUna(){
+    // busca la primera no apagada
+    for(let i=0;i<totalVelitas;i++){
+      const g = document.querySelector(`.vela-grupo[data-i="${i}"]`);
+      if(!g.classList.contains('apagada')){
+        apagarVelaPorIndice(i);
+        return;
+      }
+    }
+  }
+
+  function apagarVarias(cuantas){
+    let apagadasAhora = 0;
+    const indicesNoApagados = [];
+    for(let i=0;i<totalVelitas;i++){
+      const g = document.querySelector(`.vela-grupo[data-i="${i}"]`);
+      if(!g.classList.contains('apagada')) indicesNoApagados.push(i);
+    }
+    // mezclar para que se apaguen al azar (más bonito visualmente)
+    indicesNoApagados.sort(()=>Math.random()-0.5);
+    for(let j=0;j<Math.min(cuantas, indicesNoApagados.length);j++){
+      setTimeout(()=>apagarVelaPorIndice(indicesNoApagados[j]), j*60);
+      apagadasAhora++;
+    }
+    return apagadasAhora;
+  }
+
+  function crearDestello(grp){
+    const rect = grp.getBoundingClientRect();
+    const d = document.createElement('div');
+    d.className = 'destello';
+    d.textContent = '✨';
+    d.style.left = (rect.left + rect.width/2 - 12) + 'px';
+    d.style.top = (rect.top + 10) + 'px';
+    d.style.position = 'fixed';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(), 600);
+  }
+
+  // ============ MICRÓFONO PARA SOPLAR ============
+  let microActivo = false;
+  let analyser = null;
+  let microStream = null;
+
+  async function activarMicrofono(){
+    const btn = document.getElementById('btnSoplar');
+    const ind = document.getElementById('indMic');
+    const barra = document.getElementById('barraVol');
+
+    if(microActivo){
+      // desactivar
+      if(microStream) microStream.getTracks().forEach(t=>t.stop());
+      microActivo = false;
+      btn.textContent = '🎤 SOPLAR AL MICRÓFONO';
+      btn.classList.remove('activo');
+      ind.textContent = 'o si prefieres, usa el botón:';
+      barra.classList.remove('activa');
+      return;
+    }
+
+    try{
+      microStream = await navigator.mediaDevices.getUserMedia({audio:true});
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const fuente = ctx.createMediaStreamSource(microStream);
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 256;
+      fuente.connect(analyser);
+
+      microActivo = true;
+      btn.textContent = '🎙️ ESCUCHANDO... ¡SOPLA!';
+      btn.classList.add('activo');
+      ind.textContent = 'Sopla fuerte hacia el micrófono 💨';
+      barra.classList.add('activa');
+      detectarSoplido();
+    }catch(e){
+      ind.textContent = '⚠️ No se pudo acceder al micrófono. Usa el botón de abajo.';
+      console.log(e);
+    }
+  }
+
+  let ultimoSoplido = 0;
+  function detectarSoplido(){
+    if(!microActivo || !analyser) return;
+    const datos = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(datos);
+    // Promedio del volumen
+    let suma = 0;
+    for(let i=0;i<datos.length;i++) suma += datos[i];
+    const prom = suma / datos.length;
+
+    // Actualizar barra
+    const fill = document.getElementById('barraFill');
+    fill.style.width = Math.min(100, prom*2) + '%';
+
+    // Si el volumen es alto, apagar velitas
+    const ahora = Date.now();
+    if(prom > 35 && (ahora - ultimoSoplido) > 250){
+      ultimoSoplido = ahora;
+      // Cuanto más fuerte, más velitas apaga
+      let cuantas = 1;
+      if(prom > 50) cuantas = 2;
+      if(prom > 70) cuantas = 3;
+      if(prom > 90) cuantas = 5;
+      apagarVarias(cuantas);
+    }
+
+    requestAnimationFrame(detectarSoplido);
+  }
+
+  // ============ CONFETI ============
+  function lanzarConfeti(){
+    const colores = ['#ff6b9d','#ffd700','#7fb3ff','#a8e6a3','#d4a5ff','#ffb3d1'];
+    for(let i=0;i<120;i++){
+      setTimeout(()=>{
+        const c = document.createElement('div');
+        c.className = 'confeti';
+        c.style.left = Math.random()*100 + 'vw';
+        c.style.background = colores[Math.floor(Math.random()*colores.length)];
+        c.style.width = (5+Math.random()*8)+'px';
+        c.style.height = (8+Math.random()*10)+'px';
+        c.style.animationDuration = (3+Math.random()*2.5)+'s';
+        c.style.borderRadius = Math.random()>0.5 ? '0' : '50%';
+        c.style.transform = `rotate(${Math.random()*360}deg)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(), 6000);
+      }, i*30);
+    }
+  }
+
+  // ============ MÚSICA (Happy Birthday suave) ============
+  let audioCtx = null;
+  let musicaActiva = false;
+  let ganMaestra = null;
+  let timerLoop = null;
+
+  // Happy Birthday en notas (frecuencias)
+  // C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392, A4=440, B4=493.88, C5=523.25
+  const C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392, A4=440, Bb4=466.16, B4=493.88, C5=523.25, D5=587.33, F5=698.46;
+  const happyBirthday = [
+    // Hap-py birth-day to you
+    [C4,0.5],[C4,0.5],[D4,1],[C4,1],[F4,1],[E4,2],
+    // Hap-py birth-day to you
+    [C4,0.5],[C4,0.5],[D4,1],[C4,1],[G4,1],[F4,2],
+    // Hap-py birth-day dear A-le-xia
+    [C4,0.5],[C4,0.5],[C5,1],[A4,1],[F4,1],[E4,1],[D4,2],
+    // Hap-py birth-day to you
+    [Bb4,0.5],[Bb4,0.5],[A4,1],[F4,1],[G4,1],[F4,3],
+  ];
+
+  function iniciarMusica(){
+    if(musicaActiva) return;
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      ganMaestra = audioCtx.createGain();
+      ganMaestra.gain.value = 0.1;
+      const delay = audioCtx.createDelay();
+      delay.delayTime.value = 0.2;
+      const fbk = audioCtx.createGain();
+      fbk.gain.value = 0.2;
+      ganMaestra.connect(audioCtx.destination);
+      ganMaestra.connect(delay);
+      delay.connect(fbk);
+      fbk.connect(delay);
+      delay.connect(audioCtx.destination);
+      musicaActiva = true;
+      document.getElementById('btnMusica').textContent = '♫';
+      reproducir();
+    }catch(e){console.log('audio no disponible');}
+  }
+
+  function tocarNota(freq, dur, delay){
+    if(!audioCtx || !musicaActiva) return;
+    const t = audioCtx.currentTime + delay;
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.18, t + 0.04);
+    g.gain.linearRampToValueAtTime(0.12, t + dur*0.4);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.connect(g);
+    g.connect(ganMaestra);
+    osc.start(t);
+    osc.stop(t + dur + 0.1);
+
+    // armónica suave
+    const osc2 = audioCtx.createOscillator();
+    const g2 = audioCtx.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.value = freq*2;
+    g2.gain.setValueAtTime(0, t);
+    g2.gain.linearRampToValueAtTime(0.05, t + 0.04);
+    g2.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc2.connect(g2);
+    g2.connect(ganMaestra);
+    osc2.start(t);
+    osc2.stop(t + dur + 0.1);
+  }
+
+  function reproducir(){
+    if(!musicaActiva) return;
+    const tempo = 0.45;
+    let t = 0;
+    happyBirthday.forEach(([f,d])=>{
+      tocarNota(f, d*tempo, t);
+      t += d*tempo;
+    });
+    timerLoop = setTimeout(()=>{if(musicaActiva)reproducir();}, t*1000 + 1500);
+  }
+
+  function toggleMusica(){
+    const btn = document.getElementById('btnMusica');
+    if(!audioCtx){iniciarMusica();return;}
+    if(musicaActiva){
+      musicaActiva = false;
+      ganMaestra.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+      if(timerLoop) clearTimeout(timerLoop);
+      btn.textContent = '♪';
+    }else{
+      musicaActiva = true;
+      ganMaestra.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.3);
+      reproducir();
+      btn.textContent = '♫';
+    }
+  }
+
+  // Auto-iniciar música al primer click en cualquier parte
+  document.addEventListener('click', function init(){
+    if(!audioCtx) iniciarMusica();
+    document.removeEventListener('click', init);
+  }, {once:true});
+</script>
+
+</body>
+</html>

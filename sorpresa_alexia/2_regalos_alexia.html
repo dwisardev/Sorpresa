@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#1a0a1f"/>
+<title>🎁 Tus tres sorpresas, Alexia 🎁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Italiana&family=Great+Vibes&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#1a0a1f;
+    --noche-claro:#2a1230;
+    --rosa:#ff6b9d;
+    --rosa-claro:#ffb3d1;
+    --rosa-suave:#ffd6e8;
+    --crema:#fff5e8;
+    --dorado:#ffd700;
+    --dorado-suave:#ffe98a;
+    --azul:#7fb3ff;
+    --verde:#a8e6a3;
+    --lila:#d4a5ff;
+    --arena:#f4d9a8;
+    --arena-osc:#c9a96e;
+    --mar:#5fb8e8;
+    --mar-osc:#3a8ab8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{
+    overflow-x:hidden;
+    background:var(--noche);
+    font-family:'Cormorant',serif;
+    color:var(--crema);
+    min-height:100vh;
+  }
+  body{
+    background:
+      radial-gradient(ellipse at 30% 20%,#3a1a4a 0%,transparent 60%),
+      radial-gradient(ellipse at 70% 80%,#4a1a3a 0%,transparent 60%),
+      linear-gradient(180deg,#1a0a1f 0%,#2a1230 100%);
+    position:relative;
+    min-height:100vh;
+    padding:30px 20px 80px;
+  }
+
+  /* estrellitas */
+  .estrella-fondo{
+    position:fixed;
+    background:#fff;
+    border-radius:50%;
+    pointer-events:none;
+    animation:titilar ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes titilar{0%,100%{opacity:0.2;}50%{opacity:0.85;}}
+
+  /* ============ ENCABEZADO ============ */
+  .header{
+    text-align:center;
+    margin-bottom:40px;
+    z-index:5;
+    position:relative;
+    animation:bajar 1.2s ease-out;
+  }
+  @keyframes bajar{
+    from{opacity:0;transform:translateY(-30px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .header .super{
+    font-family:'Italiana',serif;
+    font-size:clamp(0.7rem,2.5vw,0.85rem);
+    letter-spacing:0.6em;
+    color:var(--dorado-suave);
+    opacity:0.7;
+    padding-left:0.6em;
+    margin-bottom:10px;
+  }
+  .header h1{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2.2rem,8vw,3.2rem);
+    color:var(--rosa-claro);
+    line-height:1;
+    text-shadow:0 0 25px rgba(255,179,209,0.4);
+  }
+  .header p{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:clamp(0.95rem,3vw,1.1rem);
+    color:var(--rosa-suave);
+    opacity:0.8;
+    margin-top:15px;
+    max-width:450px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.6;
+  }
+
+  /* ============ GRID DE REGALOS ============ */
+  .regalos-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:25px;
+    max-width:380px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  @media(min-width:700px){
+    .regalos-grid{
+      grid-template-columns:repeat(3,1fr);
+      max-width:1000px;
+      gap:30px;
+    }
+  }
+
+  .regalo-caja{
+    position:relative;
+    aspect-ratio:1;
+    cursor:pointer;
+    transition:transform 0.3s;
+    perspective:1000px;
+  }
+  .regalo-caja:active{transform:scale(0.95);}
+  .regalo-caja:hover{transform:translateY(-5px);}
+  .regalo-caja:hover svg{filter:drop-shadow(0 15px 35px rgba(255,107,157,0.5));}
+  .regalo-caja svg{
+    width:100%;
+    height:100%;
+    filter:drop-shadow(0 10px 25px rgba(0,0,0,0.4));
+    transition:filter 0.3s;
+  }
+  .regalo-numero{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-family:'Italiana',serif;
+    font-size:clamp(2rem,6vw,2.8rem);
+    color:white;
+    text-shadow:0 0 15px rgba(0,0,0,0.6);
+    pointer-events:none;
+    z-index:2;
+  }
+  .regalo-etiqueta{
+    text-align:center;
+    margin-top:12px;
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    color:var(--rosa-suave);
+    opacity:0.85;
+    font-size:0.95rem;
+  }
+  .regalo-caja.bloqueado{
+    opacity:0.85;
+  }
+  .candado-overlay{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:2.5rem;
+    color:var(--dorado-suave);
+    z-index:3;
+    pointer-events:none;
+    text-shadow:0 0 15px rgba(0,0,0,0.7);
+    filter:drop-shadow(0 0 8px rgba(255,233,138,0.6));
+  }
+
+  /* Animación al abrir el regalo */
+  .regalo-caja.abierto svg{
+    animation:saltar-regalo 0.6s ease;
+  }
+  @keyframes saltar-regalo{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15) rotate(-5deg);}
+  }
+
+  /* ============ MODAL CONTENEDOR ============ */
+  .modal{
+    position:fixed;
+    inset:0;
+    background:rgba(10,5,15,0.95);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.5s ease;
+    padding:20px;
+    overflow-y:auto;
+  }
+  .modal.abierto{
+    opacity:1;
+    pointer-events:all;
+  }
+  .modal-contenido{
+    max-width:550px;
+    width:100%;
+    transform:scale(0.8);
+    transition:transform 0.5s cubic-bezier(.2,.9,.3,1.4);
+    margin:auto;
+  }
+  .modal.abierto .modal-contenido{transform:scale(1);}
+  .btn-cerrar{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.3);
+    color:white;
+    font-size:1.5rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1100;
+    transition:all 0.3s;
+  }
+  .btn-cerrar:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg);}
+  .btn-cerrar:active{transform:scale(0.9) rotate(90deg);}
+
+  /* ============ REGALO 1: CARTA ============ */
+  .carta-regalo{
+    background:linear-gradient(135deg, #fff5e8 0%, #ffe5cc 100%);
+    color:#3a1a25;
+    padding:45px 32px;
+    border-radius:8px;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.5),
+      inset 0 0 0 1px var(--dorado),
+      inset 0 0 0 5px #fff5e8,
+      inset 0 0 0 6px rgba(184,147,90,0.4);
+    position:relative;
+    font-family:'Cormorant',serif;
+  }
+  .sello-carta{
+    position:absolute;
+    top:-22px;
+    right:30px;
+    width:60px;
+    height:60px;
+    background:radial-gradient(circle at 35% 35%, #ff8fb3, #c14464);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff5e8;
+    font-family:'Great Vibes',cursive;
+    font-size:1.8rem;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    transform:rotate(12deg);
+  }
+  .carta-regalo h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2.2rem,7vw,2.8rem);
+    color:#8b1e3f;
+    text-align:center;
+    margin-bottom:8px;
+    line-height:1;
+  }
+  .carta-regalo .sub-carta{
+    text-align:center;
+    font-style:italic;
+    color:#8b1e3f;
+    opacity:0.6;
+    font-size:0.9rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .ornato{
+    text-align:center;
+    color:var(--arena-osc);
+    font-size:1rem;
+    margin:18px 0;
+    letter-spacing:0.6em;
+    padding-left:0.6em;
+  }
+  .carta-regalo p{
+    font-size:clamp(1rem,3.3vw,1.1rem);
+    line-height:1.85;
+    margin-bottom:14px;
+    text-align:justify;
+    color:#3a1a25;
+    font-weight:400;
+  }
+  .carta-regalo em{
+    color:#8b1e3f;
+    font-style:italic;
+    font-weight:500;
+  }
+  .firma-carta{
+    text-align:right;
+    margin-top:25px;
+    font-family:'Great Vibes',cursive;
+    font-size:1.8rem;
+    color:#8b1e3f;
+    line-height:1;
+  }
+
+  /* ============ REGALO 2: POSTAL DE PLAYA ============ */
+  .postal-playa{
+    background:white;
+    border-radius:8px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    overflow:hidden;
+    transform:rotate(-1deg);
+    position:relative;
+  }
+  .postal-foto{
+    width:100%;
+    aspect-ratio:4/3;
+    position:relative;
+    overflow:hidden;
+  }
+  .postal-foto svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .postal-pie{
+    background:#fff5e8;
+    padding:20px 25px;
+    text-align:center;
+    border-top:1px dashed #c9a96e;
+  }
+  .postal-pie .ubicacion{
+    font-family:'Italiana',serif;
+    font-size:0.75rem;
+    letter-spacing:0.4em;
+    color:#8b6840;
+    opacity:0.7;
+    margin-bottom:5px;
+  }
+  .postal-pie .mensaje-pie{
+    font-family:'Caveat',cursive;
+    font-size:1.4rem;
+    color:#8b1e3f;
+    line-height:1.3;
+  }
+  .postal-sello{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:55px;
+    height:55px;
+    background:rgba(255,107,157,0.9);
+    border:3px solid white;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-family:'Italiana',serif;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    line-height:1;
+    text-align:center;
+    transform:rotate(8deg);
+    box-shadow:0 3px 10px rgba(0,0,0,0.3);
+    z-index:5;
+  }
+
+  /* ============ ÁLBUM DE FOTOS POLAROID ============ */
+  .album-fotos{
+    background:linear-gradient(135deg,#2a1a30 0%, #1a0f20 100%);
+    padding:30px 20px 40px;
+    border-radius:16px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    position:relative;
+  }
+  .album-fotos h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2rem,7vw,2.8rem);
+    color:var(--dorado-suave);
+    text-align:center;
+    margin-bottom:8px;
+    line-height:1;
+    text-shadow:0 0 20px rgba(255,233,138,0.4);
+  }
+  .album-fotos .sub-album{
+    text-align:center;
+    font-family:'Italiana',serif;
+    font-style:normal;
+    color:var(--rosa-suave);
+    opacity:0.75;
+    font-size:0.75rem;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    margin-bottom:25px;
+    padding-left:0.4em;
+  }
+  .carrusel-fotos{
+    position:relative;
+    margin:20px 0 25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:340px;
+  }
+  .polaroid-stack{
+    position:relative;
+    width:85%;
+    max-width:290px;
+    aspect-ratio:3/4;
+    margin:0 auto;
+  }
+  .polaroid{
+    position:absolute;
+    inset:0;
+    background:white;
+    padding:12px 12px 45px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.5);
+    transition:all 0.6s cubic-bezier(.2,.9,.3,1.4);
+    cursor:pointer;
+  }
+  .polaroid img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    background:#eee;
+  }
+  .polaroid .pie{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Caveat',cursive;
+    font-size:1.15rem;
+    color:#5a3a18;
+  }
+  /* Apilamiento inicial - las 3 fotos juntas levemente rotadas */
+  .polaroid:nth-child(1){
+    transform:rotate(-6deg) translateX(-8px);
+    z-index:1;
+  }
+  .polaroid:nth-child(2){
+    transform:rotate(3deg) translateX(4px);
+    z-index:2;
+  }
+  .polaroid:nth-child(3){
+    transform:rotate(-2deg);
+    z-index:3;
+  }
+  /* Al expandir: vista de 3 en abanico */
+  .polaroid-stack.expandido .polaroid:nth-child(1){
+    transform:rotate(-8deg) translate(-110%, 0);
+  }
+  .polaroid-stack.expandido .polaroid:nth-child(2){
+    transform:rotate(8deg) translate(110%, 0);
+  }
+  .polaroid-stack.expandido .polaroid:nth-child(3){
+    transform:rotate(0deg) translate(0, -10px) scale(1.05);
+    z-index:5;
+  }
+  @media(max-width:480px){
+    .polaroid-stack.expandido .polaroid:nth-child(1){transform:rotate(-8deg) translate(-70%, 20px) scale(0.85);}
+    .polaroid-stack.expandido .polaroid:nth-child(2){transform:rotate(8deg) translate(70%, 20px) scale(0.85);}
+  }
+
+  .boton-abanico{
+    display:block;
+    margin:15px auto 0;
+    background:transparent;
+    border:1px solid var(--dorado-suave);
+    color:var(--dorado-suave);
+    padding:8px 22px;
+    border-radius:30px;
+    font-family:'Italiana',serif;
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    cursor:pointer;
+    text-transform:uppercase;
+    transition:all 0.3s;
+  }
+  .boton-abanico:hover{
+    background:var(--dorado-suave);
+    color:var(--noche);
+  }
+
+  /* Mensaje de la sorpresa */
+  .mensaje-sorpresa{
+    background:linear-gradient(135deg, #fff5e8 0%, #ffe5cc 100%);
+    color:#3a1a25;
+    padding:30px 25px;
+    border-radius:8px;
+    margin-top:25px;
+    font-family:'Cormorant',serif;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    position:relative;
+  }
+  .mensaje-sorpresa::before{
+    content:'"';
+    position:absolute;
+    top:-5px;
+    left:18px;
+    font-family:'Great Vibes',cursive;
+    font-size:4rem;
+    color:var(--rosa);
+    opacity:0.3;
+    line-height:1;
+  }
+  .mensaje-sorpresa p{
+    font-size:clamp(0.95rem,3.3vw,1.08rem);
+    line-height:1.85;
+    color:#3a1a25;
+    margin-bottom:14px;
+    text-align:justify;
+  }
+  .mensaje-sorpresa p:last-child{margin-bottom:0;}
+  .mensaje-sorpresa em{
+    color:#8b1e3f;
+    font-style:italic;
+    font-weight:500;
+  }
+  .mensaje-sorpresa .firma-sorpresa{
+    text-align:right;
+    margin-top:18px;
+    font-family:'Great Vibes',cursive;
+    font-size:1.6rem;
+    color:#8b1e3f;
+    line-height:1;
+  }
+
+  /* Modal de foto en grande */
+  .modal-foto{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.4s;
+    padding:20px;
+    cursor:zoom-out;
+  }
+  .modal-foto.abierto{opacity:1;pointer-events:all;}
+  .modal-foto img{
+    max-width:95%;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:4px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.8);
+  }
+
+  /* ============ REGALO 3: BLOQUEADO ============ */
+  .regalo-bloqueado{
+    background:linear-gradient(135deg, #2a1230 0%, #1a0a1f 100%);
+    border:2px solid var(--dorado-suave);
+    padding:45px 30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.6),
+      inset 0 0 30px rgba(255,233,138,0.1);
+  }
+  .regalo-bloqueado .candado-grande{
+    font-size:4rem;
+    color:var(--dorado-suave);
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 15px rgba(255,233,138,0.5));
+    animation:flotar-candado 3s ease-in-out infinite;
+  }
+  @keyframes flotar-candado{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+  }
+  .regalo-bloqueado h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2rem,6vw,2.5rem);
+    color:var(--rosa-claro);
+    margin-bottom:15px;
+    text-shadow:0 0 20px rgba(255,179,209,0.4);
+  }
+  .regalo-bloqueado .pista{
+    font-family:'Italiana',serif;
+    font-size:0.85rem;
+    letter-spacing:0.4em;
+    color:var(--dorado-suave);
+    margin-bottom:25px;
+    text-transform:uppercase;
+  }
+  .regalo-bloqueado p{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:clamp(1rem,3.3vw,1.1rem);
+    color:var(--rosa-suave);
+    line-height:1.7;
+    margin-bottom:15px;
+    opacity:0.9;
+  }
+  .regalo-bloqueado .firma-bloq{
+    margin-top:25px;
+    font-family:'Great Vibes',cursive;
+    font-size:1.4rem;
+    color:var(--rosa-claro);
+    opacity:0.85;
+  }
+
+  /* ============ MENSAJE FINAL ============ */
+  .mensaje-final-todo{
+    text-align:center;
+    margin-top:60px;
+    padding:30px 20px;
+    z-index:5;
+    position:relative;
+    opacity:0;
+    transition:opacity 1.5s ease;
+  }
+  .mensaje-final-todo.mostrar{opacity:1;}
+  .mensaje-final-todo h2{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(2rem,6vw,2.8rem);
+    color:var(--dorado-suave);
+    margin-bottom:15px;
+    text-shadow:0 0 25px rgba(255,233,138,0.4);
+  }
+  .mensaje-final-todo p{
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:clamp(1rem,3vw,1.15rem);
+    color:var(--rosa-suave);
+    max-width:500px;
+    margin:0 auto;
+    line-height:1.7;
+    opacity:0.85;
+  }
+
+  /* corazones flotando de fondo */
+  .corazon-flotante{
+    position:fixed;
+    bottom:-30px;
+    pointer-events:none;
+    z-index:1;
+    opacity:0;
+    animation:subir linear infinite;
+  }
+  @keyframes subir{
+    0%{transform:translateY(0);opacity:0;}
+    15%{opacity:0.6;}
+    100%{transform:translateY(-110vh) translateX(40px);opacity:0;}
+  }
+
+  /* ============ MÚSICA ============ */
+  .control-musica{
+    position:fixed;bottom:20px;right:20px;
+    width:50px;height:50px;border-radius:50%;
+    background:rgba(255,107,157,0.85);
+    border:1px solid rgba(255,233,138,0.5);
+    color:white;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+    transition:all 0.3s;
+  }
+  .control-musica:active{transform:scale(0.9);}
+
+  .nav-volver{
+    position:fixed;
+    top:20px;
+    left:20px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.3);
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    text-decoration:none;
+    font-family:'Cormorant',serif;
+    font-style:italic;
+    font-size:0.85rem;
+    z-index:50;
+    transition:all 0.3s;
+  }
+  .nav-volver:hover{background:rgba(255,255,255,0.2);}
+</style>
+</head>
+<body>
+
+<a href="1_torta_alexia.html" class="nav-volver">← volver a la torta</a>
+
+<div class="header">
+  <div class="super">PARA TI · ALEXIA</div>
+  <h1>Tres Sorpresas</h1>
+  <p>Toca el regalo que quieras abrir primero. No tienen orden — tú decides 💝</p>
+</div>
+
+<!-- Grid de los 3 regalos -->
+<div class="regalos-grid">
+
+  <!-- REGALO 1 -->
+  <div>
+    <div class="regalo-caja" data-regalo="1" onclick="abrirRegalo(1, this)">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="r1Caja" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff8fb3"/>
+            <stop offset="1" stop-color="#c14464"/>
+          </linearGradient>
+          <linearGradient id="r1Mono" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe98a"/>
+            <stop offset="1" stop-color="#b8943a"/>
+          </linearGradient>
+        </defs>
+        <!-- Caja -->
+        <rect x="30" y="60" width="140" height="120" rx="6" fill="url(#r1Caja)"/>
+        <!-- Cinta vertical -->
+        <rect x="92" y="60" width="16" height="120" fill="url(#r1Mono)"/>
+        <!-- Cinta horizontal -->
+        <rect x="30" y="112" width="140" height="16" fill="url(#r1Mono)"/>
+        <!-- Moño superior -->
+        <ellipse cx="78" cy="55" rx="22" ry="14" fill="url(#r1Mono)"/>
+        <ellipse cx="122" cy="55" rx="22" ry="14" fill="url(#r1Mono)"/>
+        <ellipse cx="100" cy="55" rx="8" ry="10" fill="#b8943a"/>
+        <!-- Brillo -->
+        <ellipse cx="55" cy="80" rx="12" ry="20" fill="white" opacity="0.2"/>
+      </svg>
+      <div class="regalo-numero">1</div>
+    </div>
+    <div class="regalo-etiqueta">una carta</div>
+  </div>
+
+  <!-- REGALO 2 -->
+  <div>
+    <div class="regalo-caja" data-regalo="2" onclick="abrirRegalo(2, this)">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="r2Caja" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a4c8ff"/>
+            <stop offset="1" stop-color="#3a6db8"/>
+          </linearGradient>
+          <linearGradient id="r2Mono" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffd6e8"/>
+            <stop offset="1" stop-color="#c14464"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="60" width="140" height="120" rx="6" fill="url(#r2Caja)"/>
+        <rect x="92" y="60" width="16" height="120" fill="url(#r2Mono)"/>
+        <rect x="30" y="112" width="140" height="16" fill="url(#r2Mono)"/>
+        <ellipse cx="78" cy="55" rx="22" ry="14" fill="url(#r2Mono)"/>
+        <ellipse cx="122" cy="55" rx="22" ry="14" fill="url(#r2Mono)"/>
+        <ellipse cx="100" cy="55" rx="8" ry="10" fill="#c14464"/>
+        <ellipse cx="55" cy="80" rx="12" ry="20" fill="white" opacity="0.2"/>
+      </svg>
+      <div class="regalo-numero">2</div>
+    </div>
+    <div class="regalo-etiqueta">tres fotos · un mensaje</div>
+  </div>
+
+  <!-- REGALO 3 (BLOQUEADO) -->
+  <div>
+    <div class="regalo-caja bloqueado" data-regalo="3" onclick="abrirRegalo(3, this)">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="r3Caja" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d4a5ff"/>
+            <stop offset="1" stop-color="#7a5ab8"/>
+          </linearGradient>
+          <linearGradient id="r3Mono" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe98a"/>
+            <stop offset="1" stop-color="#b8943a"/>
+          </linearGradient>
+        </defs>
+        <rect x="30" y="60" width="140" height="120" rx="6" fill="url(#r3Caja)" opacity="0.7"/>
+        <rect x="92" y="60" width="16" height="120" fill="url(#r3Mono)" opacity="0.7"/>
+        <rect x="30" y="112" width="140" height="16" fill="url(#r3Mono)" opacity="0.7"/>
+        <ellipse cx="78" cy="55" rx="22" ry="14" fill="url(#r3Mono)" opacity="0.7"/>
+        <ellipse cx="122" cy="55" rx="22" ry="14" fill="url(#r3Mono)" opacity="0.7"/>
+        <ellipse cx="100" cy="55" rx="8" ry="10" fill="#b8943a" opacity="0.7"/>
+      </svg>
+      <div class="regalo-numero" style="opacity:0.6">3</div>
+      <div class="candado-overlay">🔒</div>
+    </div>
+    <div class="regalo-etiqueta">se desbloquea pronto...</div>
+  </div>
+
+</div>
+
+<!-- Mensaje final que aparece después de abrir todos -->
+<div class="mensaje-final-todo" id="msgFinal">
+  <h2>Que sea un día bonito ✨</h2>
+  <p>Y que el año que entra te traiga muchas cosas buenas, Alexia. Te lo mereces.</p>
+</div>
+
+<!-- ============ MODAL: REGALO 1 (CARTA) ============ -->
+<div class="modal" id="modal1">
+  <button class="btn-cerrar" onclick="cerrarModal('modal1')">×</button>
+  <div class="modal-contenido">
+    <div class="carta-regalo">
+      <div class="sello-carta">A</div>
+      <h2>Hola, Alexia</h2>
+      <div class="sub-carta">· una carta para tu cumpleaños ·</div>
+      <div class="ornato">❦ ❦ ❦</div>
+
+      <p>Antes que nada, quiero desearte un <em>muy feliz cumpleaños</em>. De corazón. Que tu día esté lleno de cosas bonitas y de la gente que te quiere bien.</p>
+
+      <p>El día que me dijiste que somos amigos me llené de mucha alegría, no te miento. Yo pensaba que solo me tenías cierta estima por las cosas que hemos compartido — nuestras dificultades, los problemas, los momentos en los que cada uno necesitaba a alguien que escuchara. Saber que de verdad ocupo un espacio en tu corazón es algo que valoro mucho.</p>
+
+      <p>Como amigo voy a tratar de estar a la altura. Con paciencia, sin presionar, respetando siempre tu espacio y tus tiempos. <em>Las cosas buenas no se apuran</em> — pasan cuando tienen que pasar, a su ritmo, y eso está bien así.</p>
+
+      <p>Espero algún día poder conocerte en persona, y que esta amistad siga creciendo con calma. Y si con el tiempo da para algo más, qué bonito. Y si no, también está bien — porque lo que vale es que estés en mi vida, en la forma que sea.</p>
+
+      <p>Quería que supieras que desde que te conozco ando un poco más feliz. A veces estar hablando solo, fuera de la familia, se siente medio feo, y tú llegaste a hacer ese ruido del silencio menos pesado.</p>
+
+      <p>Te preparé tres sorpresas — espero te lleves un lindo recuerdo de hoy. <em>Gracias por ser tú</em>. Por tu paciencia, tu nobleza, y por dejarme ser tu amigo.</p>
+
+      <p style="text-align:center;font-family:'Great Vibes',cursive;font-size:1.8rem;color:#8b1e3f;margin-top:25px;line-height:1.2;">Feliz cumple, chiki<br>Alexia Abigail Gutiérrez Pilar 🌹</p>
+
+      <div class="firma-carta">— para ti, en tu día</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: REGALO 2 (POSTAL DE PLAYA) ============ -->
+<div class="modal" id="modal2">
+  <button class="btn-cerrar" onclick="cerrarModal('modal2')">×</button>
+  <div class="modal-contenido">
+    <div class="album-fotos">
+      <h2>Un pedacito de playa</h2>
+      <div class="sub-album">· 3 fotos · un mensaje ·</div>
+
+      <div class="carrusel-fotos">
+        <div class="polaroid-stack" id="stackPolaroid" onclick="expandirPolaroids()">
+          <div class="polaroid" onclick="verFoto(event, 'fotos/puesta_sol2.jpg')">
+            <img src="fotos/puesta_sol2.jpg" alt="Atardecer en la playa" loading="lazy"/>
+            <div class="pie">el mar ese día</div>
+          </div>
+          <div class="polaroid" onclick="verFoto(event, 'fotos/cumple_arena1.jpg')">
+            <img src="fotos/cumple_arena1.jpg" alt="Feliz cumple en la arena" loading="lazy"/>
+            <div class="pie">escrito en la arena</div>
+          </div>
+          <div class="polaroid" onclick="verFoto(event, 'fotos/torta_arena.jpg')">
+            <img src="fotos/torta_arena.jpg" alt="Torta dibujada en la arena" loading="lazy"/>
+            <div class="pie">tu torta, en arena</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="boton-abanico" onclick="expandirPolaroids()" id="btnAbanico">VER LAS TRES</button>
+
+      <div class="mensaje-sorpresa">
+        <p>Te preparé esta sorpresa porque pensé que sería única. <em>Perdón</em> — como sabes no soy Leonardo Da Vinci, así que no me salió como esperaba. Al principio pensaba hacerte un cartel, pero preferí esto porque quiero crear recuerdos lindos contigo.</p>
+
+        <p>Y si me preguntas por qué lo hago, muy aparte que es tu cumpleaños… pues no sé. Solo me estoy dejando llevar por la corriente. A veces la vida es inesperada, y agradezco que te haya puesto en mi camino.</p>
+
+        <p>No quiero decir ninguna burrada como esa vez, pero <em>eres una súper mujer</em> — incluso con tus defectos, que poco a poco voy descubriendo. Por eso me tomaré el atrevimiento de decirte: <em>me encantas</em>. Feliz cumpleaños. Pásala lindo.</p>
+
+        <p>Quizás cuando me vaya al cuartel no haya tanto tiempo para conversar, pero siempre trataré de responder tus mensajes, porque <em>le dan un brillo especial a toda mi vida de oscuridad</em>.</p>
+
+        <p style="text-align:center;font-family:'Great Vibes',cursive;font-size:1.8rem;color:#8b1e3f;margin-top:25px;line-height:1.2;">Feliz cumple, chiki<br>Alexia Abigail Gutiérrez Pilar 🌹</p>
+
+        <div class="firma-sorpresa">— para ti, en tu día</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: REGALO 3 (BLOQUEADO) ============ -->
+<div class="modal" id="modal3">
+  <button class="btn-cerrar" onclick="cerrarModal('modal3')">×</button>
+  <div class="modal-contenido">
+    <div class="regalo-bloqueado">
+      <div class="candado-grande">🔒</div>
+      <div class="pista">SE DESBLOQUEA PRONTO</div>
+      <h2>Aún no, Alexia...</h2>
+      <p>Este regalo tiene su momento. <em>Las cosas buenas no se apuran.</em></p>
+      <p>Solo necesitas un poquito de paciencia — pronto sabrás qué es. Te prometo que vale la espera 💝</p>
+      <p style="font-size:0.95rem;opacity:0.7;">(volveré con la llave en su momento)</p>
+      <div class="firma-bloq">— hasta pronto ✨</div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para ver foto en grande -->
+<div class="modal-foto" id="modalFoto" onclick="cerrarFoto()">
+  <img id="modalFotoImg" src="" alt=""/>
+</div>
+
+<button class="control-musica" id="btnMusica" onclick="toggleMusica()" aria-label="Música">♪</button>
+
+<script>
+  // ============ ESTRELLITAS ============
+  (function(){
+    for(let i=0;i<60;i++){
+      const e = document.createElement('div');
+      e.className = 'estrella-fondo';
+      const s = 0.5 + Math.random()*2;
+      e.style.width = s+'px';
+      e.style.height = s+'px';
+      e.style.left = Math.random()*100+'%';
+      e.style.top = Math.random()*100+'%';
+      e.style.animationDuration = (2+Math.random()*4)+'s';
+      e.style.animationDelay = Math.random()*4+'s';
+      document.body.appendChild(e);
+    }
+  })();
+
+  // ============ CORAZONES FLOTANTES ============
+  function crearCorazon(){
+    const c = document.createElement('div');
+    c.className = 'corazon-flotante';
+    const tam = 12 + Math.random()*16;
+    c.style.width = tam + 'px';
+    c.style.height = tam + 'px';
+    const colores = ['#ff6b9d','#ffb3d1','#ffd6e8','#ffd700'];
+    const col = colores[Math.floor(Math.random()*colores.length)];
+    c.innerHTML = `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <path d="M10 17 C 10 17, 2 12, 2 7 C 2 4, 4 3, 6 3 C 8 3, 9 4, 10 6 C 11 4, 12 3, 14 3 C 16 3, 18 4, 18 7 C 18 12, 10 17, 10 17 Z" fill="${col}"/>
+    </svg>`;
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.animationDuration = (8 + Math.random()*5) + 's';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 14000);
+  }
+  setInterval(crearCorazon, 1200);
+
+  // ============ ABRIR / CERRAR REGALOS ============
+  const regalosAbiertos = new Set();
+
+  function abrirRegalo(num, elem){
+    elem.classList.add('abierto');
+    setTimeout(()=>{
+      document.getElementById('modal'+num).classList.add('abierto');
+    }, 300);
+
+    if(num !== 3){
+      regalosAbiertos.add(num);
+    } else {
+      // El regalo 3 también cuenta para que aparezca el mensaje
+      regalosAbiertos.add(3);
+    }
+
+    // Si abrió los 3, mostrar mensaje final
+    if(regalosAbiertos.size === 3){
+      setTimeout(()=>{
+        document.getElementById('msgFinal').classList.add('mostrar');
+      }, 500);
+    }
+  }
+
+  function cerrarModal(id){
+    document.getElementById(id).classList.remove('abierto');
+  }
+
+  // ============ POLAROIDS (expandir y ver foto) ============
+  function expandirPolaroids(){
+    const stack = document.getElementById('stackPolaroid');
+    const btn = document.getElementById('btnAbanico');
+    stack.classList.toggle('expandido');
+    btn.textContent = stack.classList.contains('expandido') ? 'VOLVER A APILAR' : 'VER LAS TRES';
+  }
+
+  function verFoto(event, src){
+    // Si el stack está expandido, que permita abrir foto en grande
+    // Si está apilado, solo expandir
+    event.stopPropagation();
+    const stack = document.getElementById('stackPolaroid');
+    if(!stack.classList.contains('expandido')){
+      expandirPolaroids();
+      return;
+    }
+    const modal = document.getElementById('modalFoto');
+    const img = document.getElementById('modalFotoImg');
+    img.src = src;
+    modal.classList.add('abierto');
+  }
+
+  function cerrarFoto(){
+    document.getElementById('modalFoto').classList.remove('abierto');
+  }
+
+  // Cerrar modal al hacer click fuera del contenido
+  document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => {
+      if(e.target === m) m.classList.remove('abierto');
+    });
+  });
+
+  // Tecla ESC cierra
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.modal.abierto').forEach(m => m.classList.remove('abierto'));
+    }
+  });
+
+  // ============ MÚSICA ============
+  let audioCtx = null;
+  let musicaActiva = false;
+  let ganMaestra = null;
+  let timerLoop = null;
+
+  // Melodía romántica suave (Am - F - C - G)
+  const A3=220, F3=174.61, C4=261.63, G3=196, A4=440, C5=523.25, E5=659.25, G5=783.99, F5=698.46, D5=587.33, B4=493.88, E4=329.63;
+
+  const melodia = [
+    [A4,1],[C5,1],[E5,1],[C5,1],
+    [F3*2,1],[C5,1],[F5,1],[C5,1],
+    [C4*2,1],[E5,1],[G5,1],[E5,1],
+    [G3*2,1],[D5,1],[G5,1],[D5,1],
+    [A4,1],[E5,1],[A4*2,2],
+    [F3*2,1],[A4,1],[F5,2],
+    [C4*2,1],[G5,1],[E5,2],
+    [G3*2,1],[B4,1],[D5,2],
+  ];
+
+  const bajo = [
+    [A3,4],[F3,4],[C4,4],[G3,4],
+    [A3,4],[F3,4],[C4,4],[G3,4],
+  ];
+
+  function iniciarMusica(){
+    if(musicaActiva) return;
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      ganMaestra = audioCtx.createGain();
+      ganMaestra.gain.value = 0.1;
+      const delay = audioCtx.createDelay();
+      delay.delayTime.value = 0.25;
+      const fbk = audioCtx.createGain();
+      fbk.gain.value = 0.2;
+      ganMaestra.connect(audioCtx.destination);
+      ganMaestra.connect(delay);
+      delay.connect(fbk);
+      fbk.connect(delay);
+      delay.connect(audioCtx.destination);
+      musicaActiva = true;
+      document.getElementById('btnMusica').textContent = '♫';
+      reproducir();
+    }catch(e){console.log('audio no disponible');}
+  }
+
+  function tocar(freq, dur, tipo, vol, delay){
+    if(!audioCtx || !musicaActiva) return;
+    const t = audioCtx.currentTime + delay;
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = tipo;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + 0.04);
+    g.gain.linearRampToValueAtTime(vol*0.6, t + dur*0.3);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.connect(g);
+    g.connect(ganMaestra);
+    osc.start(t);
+    osc.stop(t + dur + 0.1);
+  }
+
+  function reproducir(){
+    if(!musicaActiva) return;
+    const tempo = 0.48;
+    let tm = 0, tb = 0;
+    melodia.forEach(([f,d])=>{
+      tocar(f, d*tempo, 'triangle', 0.18, tm);
+      tocar(f*2, d*tempo, 'sine', 0.05, tm);
+      tm += d*tempo;
+    });
+    bajo.forEach(([f,d])=>{
+      tocar(f, d*tempo, 'sine', 0.15, tb);
+      tb += d*tempo;
+    });
+    const total = Math.max(tm, tb);
+    timerLoop = setTimeout(()=>{if(musicaActiva)reproducir();}, total*1000);
+  }
+
+  function toggleMusica(){
+    const btn = document.getElementById('btnMusica');
+    if(!audioCtx){iniciarMusica();return;}
+    if(musicaActiva){
+      musicaActiva = false;
+      ganMaestra.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+      if(timerLoop) clearTimeout(timerLoop);
+      btn.textContent = '♪';
+    }else{
+      musicaActiva = true;
+      ganMaestra.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.3);
+      reproducir();
+      btn.textContent = '♫';
+    }
+  }
+
+  // Auto música al primer click
+  document.addEventListener('click', function init(){
+    if(!audioCtx) iniciarMusica();
+    document.removeEventListener('click', init);
+  }, {once:true});
+
+</script>
+
+</body>
+</html>
